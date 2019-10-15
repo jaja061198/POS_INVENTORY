@@ -110,12 +110,12 @@ $skip = 0;
 						<td style="text-align: right;width: 40px;"><font style="font-weight: bold;">Date:</font></td>
 						<td style="border-right: 1px solid black;">&nbsp; {{ date('m-d-Y') }}</td>
 						<td style="text-align: left;width: 90px;">&nbsp;<font style="font-weight: bold;">Report Type:</font></td>
-						<td style="border-right: 1px solid black;">Top Selling Items Report</td>
+						<td style="border-right: 1px solid black;">Worst Selling Items Report</td>
 						<td style="text-align: right;width: 60px;"><font style="font-weight: bold;font-family: Courier new;">Page No.:</font></td>
 						<td style="font-family: Courier new;">&nbsp; {{ $i + 1 }}</td>
 					</tr>					
 				</table>
-				<p style="font-weight: bold;font-size: 13px;padding: 10px;;">Top Selling Items for the month of {{ date('M-Y', strtotime($date_sort)) }}</p>
+				<p style="font-weight: bold;font-size: 13px;padding: 10px;;">Worst Selling Items for the month of {{ date('M-Y', strtotime($date_sort)) }}</p>
 				</div>
 
 
@@ -137,7 +137,7 @@ $skip = 0;
 				@endphp
 
 
-					@foreach(InvoiceReportTraits::top_selling($data_list,'COUNT') as $key => $value)
+					@foreach(InvoiceReportTraits::worst_selling($data_list,'COUNT') as $key => $value)
 					
 
 					@php

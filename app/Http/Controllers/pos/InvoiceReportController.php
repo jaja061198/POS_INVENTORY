@@ -20,14 +20,27 @@ class InvoiceReportController extends Controller
         return $this->indexFunction();
     }
 
+
+    public function indexWorst()
+    {
+        return $this->indexWorstFunction();
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function generate(Request $request)
     {
         return $this->generateFunction($request);
+    }
+
+    public function generateWorst(Request $request)
+    {
+        return $this->generateWorstFunction($request);
     }
 
     /**

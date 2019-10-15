@@ -30,7 +30,16 @@ trait InvoiceReportTraits
 	}
 
 
-	function top_selling($unsorted, $column) 
+	public function indexWorstFunction()
+	{
+
+		return view('POS.pos.reports.worst_selling_report')
+		->with('brand',BrandModel::all())
+		->with('type',ItemTypeModel::all());
+	}
+
+
+	public static function top_selling($unsorted, $column) 
 	{ 
 		$sorted = $unsorted; 
 
@@ -52,12 +61,30 @@ trait InvoiceReportTraits
 		return $sorted; 
 	} 
 
+	public static function worst_selling($unsorted, $column) 
+	{ 
+		$sorted = $unsorted; 
+
+		for ($i=0; $i < sizeof($sorted)-1; $i++) 
+		{ 
+			  for ($j=0; $j<sizeof($sorted)-1-$i; $j++) 
+
+			  {
+
+				    if ($sorted[$j][$column] > $sorted[$j+1][$column]) 
+				    { 
+				      $tmp = $sorted[$j]; 
+				      $sorted[$j] = $sorted[$j+1]; 
+				      $sorted[$j+1] = $tmp; 
+				  	} 
+
+			  }
+		} 
+		return $sorted; 
+	} 
+
 	public function generateFunction(Request $request)
 	{
-
-		
-
-		// return $this->top_selling($data,'COUNT');
 
 		return view('POS.pos.reports.selling_report_result')
 		->with('brand',$request->input('brand'))
@@ -66,7 +93,18 @@ trait InvoiceReportTraits
 		->with('type',$request->input('type'));
 	}
 
-	public static function getData($brand, $type, $skip, $take, $sorting = null, $month = null)
+
+	public function generateWorstFunction(Request $request)
+	{
+
+		return view('POS.pos.reports.worst_selling_report_result')
+		->with('brand',$request->input('brand'))
+		->with('date_sort',$request->input('month_range'))
+		->with('sorting',$request->input('sort'))
+		->with('type',$request->input('type'));
+	}
+
+	public static function getData($brand, $type, $skip, $take, $month)
 	{
 		$item = ItemModel::query();
 
@@ -92,15 +130,15 @@ trait InvoiceReportTraits
 				'ITEM_DESC' => $value['ITEM_DESC'],
 				'ITEM_BRAND' => $value->getBrand['BRAND_DESC'],
 				'ITEM_TYPE' => $value->getType['ITEM_TYPE_DESC'],
-				'COUNT' => InvoiceDetailsModel::whereYear('INVOICE_DATE',date('y',strtotime($month)))->whereMonth('INVOICE_DATE',date('m',strtotime($month)))->where('ITEM_CODE','=',$value['ITEM_CODE'])->orderBy(DB::raw('SUM(QUANTITY) ASC'))->sum('QUANTITY'),
+				'COUNT' => InvoiceDetailsModel::whereYear('INVOICE_DATE',date('Y',strtotime($month)))->whereMonth('INVOICE_DATE',date('m',strtotime($month)))->where('ITEM_CODE','=',$value['ITEM_CODE'])->orderBy(DB::raw('SUM(QUANTITY) ASC'))->sum('QUANTITY'),
 			];
 		}
 
-		return $this->top_selling($data,'COUNT');
+		return $data;
 	}
 
 
-	public static function countData($brand, $type , $sorting = null , $month = null)
+	public static function countData($brand, $type)
 	{
 		$item = ItemModel::query();
 

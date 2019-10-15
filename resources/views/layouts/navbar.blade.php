@@ -88,10 +88,13 @@
                                                            @foreach(Navigation::getCategory($element['NAV_ID']) as $category_key => $category)
 
                                                                @if ($category['CHILD'] == 0)
-                                                                      
-                                                                      <li style="margin-left: 12px;">
-                                                                         <a href="{{ route($category['ROUTE']) }}"> <i class="{{ Icons::getIconClass($category['ICON']) }}"></i> {{ $category['NAV_DESCRIPTION'] }}</a>
-                                                                      </li>
+                                                                      @if(Helper::getUserAccess($category['NAV_ID'])['VIEW'] == 1)
+
+                                                                        <li style="margin-left: 12px;">
+                                                                           <a href="{{ route($category['ROUTE']) }}"> <i class="{{ Icons::getIconClass($category['ICON']) }}"></i> {{ $category['NAV_DESCRIPTION'] }}</a>
+                                                                        </li>
+
+                                                                      @endif
 
                                                                @endif
 

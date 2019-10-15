@@ -35,4 +35,8 @@ Route::get('pos/repots/top-selling','pos\InvoiceReportController@index')->name('
 
 Route::post('pos/repots/top-selling','pos\InvoiceReportController@generate')->name('post.index.top.selling');
 
+Route::get('pos/repots/worst-selling','pos\InvoiceReportController@indexWorst')->name('index.worst.selling');
+
+Route::post('pos/repots/worst-selling','pos\InvoiceReportController@generateWorst')->name('post.index.worst.selling');
+
 });

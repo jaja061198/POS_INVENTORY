@@ -58,7 +58,7 @@ trait InvoiceTraits
 
 		// return $request->all();
 
-		if(Helper::removeCommas($request->input('pay_amount')) <= Helper::removeCommas($request->input('total_amount2')))
+		if(Helper::removeCommas($request->input('pay_amount')) < Helper::removeCommas($request->input('total_amount2')))
 		{
 			Session::flash('failed','Cash amount must be greater than or equal to Total Amount');
 

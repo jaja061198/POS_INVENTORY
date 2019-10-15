@@ -37,6 +37,10 @@ Route::get('inventory/receiving/show/{id}','inventory\ReceivingController@show')
 
 Route::get('inventory/reports/reorderreport','inventory\ReorderController@index')->name('reorder.inventory.report');
 
+Route::post('inventory/reports/reorderreport','inventory\ReorderController@generate')->name('post.reorder.inventory.report');
+
 Route::get('inventory/reports/inventoryvalue','inventory\InventoryReportController@index')->name('value.inventory.report');
+
+Route::post('inventory/reports/inventoryvalue','inventory\InventoryReportController@generate')->name('post.value.inventory.report');
 
 });

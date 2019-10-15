@@ -4,7 +4,7 @@
 
 <div id="page-wrapper">
 <div class="row" style="margin-top:-12px;">
-	<h5 class="page-header" style="color:blue;"><i class="fa fa-users"></i> Reorder Point Report</h5>
+	<h5 class="page-header" style="color:blue;"><i class="fa fa-users"></i> Inventory Value Report</h5>
 </div>
 
 @include('layouts.messages')	
@@ -14,7 +14,7 @@
 	<div class="col-lg-12">
 
 		<div class="panel panel-default" style=" font-size: 12px;">
-			{{ Form::open(array('route' => 'post.reorder.inventory.report', 'target' => '_blank')) }}
+			{{ Form::open(array('route' => 'post.value.inventory.report', 'target' => '_blank')) }}
 			<div class="form-group">
 	            <label for="recipient-name" class="col-form-label"><i style="color:red;"></i> BRAND FILTER: </label> <small style="color:red;visibility: hidden;" id="fname_msg"><i></i></small>
 	            <select class="form-control" id="user_level" name="brand" required>

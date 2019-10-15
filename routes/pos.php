@@ -28,4 +28,11 @@ Route::get('pos/invoice/list','pos\InvoiceController@indexList')->name('invoice.
 
 Route::get('pos/invoice/view/{id}','pos\InvoiceController@show')->name('invoice.show');
 
+
+//REPORTS
+
+Route::get('pos/repots/top-selling','pos\InvoiceReportController@index')->name('index.top.selling');
+
+Route::post('pos/repots/top-selling','pos\InvoiceReportController@generate')->name('post.index.top.selling');
+
 });

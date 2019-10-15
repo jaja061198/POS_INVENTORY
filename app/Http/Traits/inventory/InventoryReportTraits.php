@@ -17,13 +17,13 @@ use App\Models\inventory\ReceivingHeader as ReceivingHeaderModel;
 use App\Models\inventory\ReceivingDetail as ReceivingDetailModel;
 use App\Models\masterfile\ItemType as ItemTypeModel;
 
-trait ReorderTraits
+trait InventoryReportTraits
 {
 
 	public function indexFunction()
 	{
 
-		return view('POS.inventory.reports.reorder_report')
+		return view('POS.inventory.reports.inventory_value')
 		->with('brand',BrandModel::all())
 		->with('type',ItemTypeModel::all());
 	}
@@ -31,7 +31,7 @@ trait ReorderTraits
 	public function generateFunction(Request $request)
 	{
 
-		return view('POS.inventory.reports.reorder_result')
+		return view('POS.inventory.reports.inventory_value_report')
 		->with('brand',$request->input('brand'))
 		->with('type',$request->input('type'));
 	}
@@ -40,7 +40,7 @@ trait ReorderTraits
 	{
 		$item = ItemModel::query();
 
-		$item = $item->whereRaw('QUANTITY < MIN_LEVEL');
+		// $item = $item->whereRaw('QUANTITY < MIN_LEVEL');
 
 		if($brand != '_ALL')
 		{
@@ -62,7 +62,7 @@ trait ReorderTraits
 	{
 		$item = ItemModel::query();
 
-		$item = $item->whereRaw('QUANTITY < MIN_LEVEL');
+		// $item = $item->whereRaw('QUANTITY < MIN_LEVEL');
 
 		if($brand != '_ALL')
 		{

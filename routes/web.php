@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-
+Route::get('/artisancall', 'HomeController@artisancall')->name('artisan.call');
 
 Route::group(['middleware' => 'auth'], function () 
 {

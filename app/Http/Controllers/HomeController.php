@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function artisancall()
+    {
+
+        \Artisan::call('view:clear');
+
+        \Artisan::call('config:clear');
+
+        \Artisan::call('config:clear');
+    }
 }

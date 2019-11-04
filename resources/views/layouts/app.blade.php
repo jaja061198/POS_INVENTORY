@@ -162,7 +162,7 @@
         <div id="wrapper">
         @include('layouts.navbar')
 
-          {{ csrf_field() }}
+          {{-- {{ csrf_field() }} --}}
 
          @yield('content')
             
@@ -202,24 +202,25 @@
 
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
+    {{-- <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
         });
     });
-    </script>
+    </script> --}}
 
-    <script>
+    {{-- <script>
     // tooltip demo
     $('.tooltip-demo').tooltip({
         selector: "[data-toggle=tooltip]",
         container: "body"
     })
+    
     // popover demo
     $("[data-toggle=popover]")
         .popover()
-    </script>
+    </script> --}}
 
 
     <script type="text/javascript">

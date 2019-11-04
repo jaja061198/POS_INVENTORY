@@ -65,6 +65,7 @@ trait ReceivingTraits
 	public function serversideFunction(Request $request)
 	{
 		// print_r($request->all());
+		
 		$columns = array(
 			0 => 'ITEM_CODE',
 			1 => 'ITEM_DESC',
@@ -75,7 +76,7 @@ trait ReceivingTraits
 		$limit = $request->input('length');
 		$start = $request->input('start');
 		$order = $columns[1];
-		$dir  = $request->input('order.0.dir');
+		$dir  = $request->input('order.1.dir');
 
 	
 		if(empty($request->input('search.value')))

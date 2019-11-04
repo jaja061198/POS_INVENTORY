@@ -10,7 +10,7 @@
 
       <div class="modal-body">
           
-          <table class="table table-bordered" style="width: 100%" id="item_table">
+          <table class="table table-striped table-bordered table-hover tooltip-demo table-responsiv" style="width: 100%" id="item_table">
             <thead>
               <tr>
                 <td>Item Code</td>
@@ -42,7 +42,7 @@ $(document).ready( function () {
       processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
     },
 
-    ajax : {
+    "ajax" : {
       "url" : "{{ route('serverside.receiving') }}",
       "dataType" : "json",
       "type" : "post",

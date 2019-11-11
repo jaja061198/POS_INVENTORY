@@ -1,4 +1,4 @@
-	<div class="products">
+	<div class="products" style="height: auto;">
 		<div class="container">
 			<div class="row">
 				<div class="col">

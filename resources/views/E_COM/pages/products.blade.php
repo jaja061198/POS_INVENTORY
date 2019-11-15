@@ -1,4 +1,4 @@
-	<div class="products" style="height: auto;">
+	<div class="products" style="height: 100%;">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -53,7 +53,7 @@
 	</div>
 
 
-	<div class="newsletter">
+	<div class="newsletter" style="margin-top: 40px;">
 		<div class="container">
 			<div class="row">
 				<div class="col">

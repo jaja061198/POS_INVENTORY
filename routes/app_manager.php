@@ -57,5 +57,12 @@ Route::group(['middleware' => 'auth'], function ()
 
 	//SYS DOC FORM GENERATION
 	
+
+	//E COM SEtTINGS
+	
+
+	//SLider
+	//
+	Route::get('ecommercesetting/slider','app_manager\SliderController@index')->name('index.slider');
 	
 });

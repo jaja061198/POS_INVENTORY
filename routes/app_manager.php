@@ -64,5 +64,7 @@ Route::group(['middleware' => 'auth'], function ()
 	//SLider
 	//
 	Route::get('ecommercesetting/slider','app_manager\SliderController@index')->name('index.slider');
+
+	Route::get('ecommercesetting/slider/get','app_manager\SliderController@getSlider')->name('get.slider');
 	
 });

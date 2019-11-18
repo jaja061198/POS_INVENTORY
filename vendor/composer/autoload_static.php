@@ -20,12 +20,17 @@ class ComposerStaticInit4540799d9285b14c8e6e674b7c3a1c63
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '0b47d6d4a00ca9112ba3953b49e7c9a4' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'Y' => 
+        array (
+            'Yajra\\DataTables\\' => 17,
         ),
         'X' => 
         array (
@@ -135,6 +140,10 @@ class ComposerStaticInit4540799d9285b14c8e6e674b7c3a1c63
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'Yajra\\DataTables\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -379,12 +388,15 @@ class ComposerStaticInit4540799d9285b14c8e6e674b7c3a1c63
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\E_COM\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/E_COM/IndexController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\app_manager\\CompanyController' => __DIR__ . '/../..' . '/app/Http/Controllers/app_manager/CompanyController.php',
         'App\\Http\\Controllers\\app_manager\\DocNumberController' => __DIR__ . '/../..' . '/app/Http/Controllers/app_manager/DocNumberController.php',
         'App\\Http\\Controllers\\app_manager\\NavigationController' => __DIR__ . '/../..' . '/app/Http/Controllers/app_manager/NavigationController.php',
+        'App\\Http\\Controllers\\app_manager\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/app_manager/SliderController.php',
         'App\\Http\\Controllers\\app_manager\\UserAccessController' => __DIR__ . '/../..' . '/app/Http/Controllers/app_manager/UserAccessController.php',
         'App\\Http\\Controllers\\app_manager\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/app_manager/UserController.php',
+        'App\\Http\\Controllers\\inventory\\InventoryReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/inventory/InventoryReportController.php',
         'App\\Http\\Controllers\\inventory\\ReceivingController' => __DIR__ . '/../..' . '/app/Http/Controllers/inventory/ReceivingController.php',
         'App\\Http\\Controllers\\inventory\\ReorderController' => __DIR__ . '/../..' . '/app/Http/Controllers/inventory/ReorderController.php',
         'App\\Http\\Controllers\\masterfile\\BrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/masterfile/BrandController.php',
@@ -392,6 +404,7 @@ class ComposerStaticInit4540799d9285b14c8e6e674b7c3a1c63
         'App\\Http\\Controllers\\masterfile\\ItemTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/masterfile/ItemTypeController.php',
         'App\\Http\\Controllers\\masterfile\\ServicesController' => __DIR__ . '/../..' . '/app/Http/Controllers/masterfile/ServicesController.php',
         'App\\Http\\Controllers\\pos\\InvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/pos/InvoiceController.php',
+        'App\\Http\\Controllers\\pos\\InvoiceReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/pos/InvoiceReportController.php',
         'App\\Http\\Controllers\\userController' => __DIR__ . '/../..' . '/app/Http/Controllers/userController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -403,18 +416,23 @@ class ComposerStaticInit4540799d9285b14c8e6e674b7c3a1c63
         'App\\Http\\Traits\\app_manager\\CompanyTraits' => __DIR__ . '/../..' . '/app/Http/Traits/app_manager/CompanyTraits.php',
         'App\\Http\\Traits\\app_manager\\DocNumberTraits' => __DIR__ . '/../..' . '/app/Http/Traits/app_manager/DocNumberTraits.php',
         'App\\Http\\Traits\\app_manager\\NavigationTraits' => __DIR__ . '/../..' . '/app/Http/Traits/app_manager/NavigationTraits.php',
+        'App\\Http\\Traits\\app_manager\\SliderTraits' => __DIR__ . '/../..' . '/app/Http/Traits/app_manager/SliderTraits.php',
         'App\\Http\\Traits\\app_manager\\UserAccessTraits' => __DIR__ . '/../..' . '/app/Http/Traits/app_manager/UserAccessTraits.php',
         'App\\Http\\Traits\\app_manager\\UserTraits' => __DIR__ . '/../..' . '/app/Http/Traits/app_manager/UserTraits.php',
+        'App\\Http\\Traits\\common\\AssetTraits' => __DIR__ . '/../..' . '/app/Http/Traits/common/AssetTraits.php',
+        'App\\Http\\Traits\\inventory\\InventoryReportTraits' => __DIR__ . '/../..' . '/app/Http/Traits/inventory/InventoryReportTraits.php',
         'App\\Http\\Traits\\inventory\\ReceivingTraits' => __DIR__ . '/../..' . '/app/Http/Traits/inventory/ReceivingTraits.php',
         'App\\Http\\Traits\\inventory\\ReorderTraits' => __DIR__ . '/../..' . '/app/Http/Traits/inventory/ReorderTraits.php',
         'App\\Http\\Traits\\masterfile\\BrandTraits' => __DIR__ . '/../..' . '/app/Http/Traits/masterfile/BrandTraits.php',
         'App\\Http\\Traits\\masterfile\\ItemTraits' => __DIR__ . '/../..' . '/app/Http/Traits/masterfile/ItemTraits.php',
         'App\\Http\\Traits\\masterfile\\ItemTypeTraits' => __DIR__ . '/../..' . '/app/Http/Traits/masterfile/ItemTypeTraits.php',
         'App\\Http\\Traits\\masterfile\\ServiceTraits' => __DIR__ . '/../..' . '/app/Http/Traits/masterfile/ServiceTraits.php',
+        'App\\Http\\Traits\\pos\\InvoiceReportTraits' => __DIR__ . '/../..' . '/app/Http/Traits/pos/InvoiceReportTraits.php',
         'App\\Http\\Traits\\pos\\InvoiceTraits' => __DIR__ . '/../..' . '/app/Http/Traits/pos/InvoiceTraits.php',
         'App\\Models\\app_manager\\Company' => __DIR__ . '/../..' . '/app/Models/app_manager/Company.php',
         'App\\Models\\app_manager\\Icons' => __DIR__ . '/../..' . '/app/Models/app_manager/Icons.php',
         'App\\Models\\app_manager\\Navigation' => __DIR__ . '/../..' . '/app/Models/app_manager/Navigation.php',
+        'App\\Models\\app_manager\\Slider' => __DIR__ . '/../..' . '/app/Models/app_manager/Slider.php',
         'App\\Models\\app_manager\\UserAccess' => __DIR__ . '/../..' . '/app/Models/app_manager/UserAccess.php',
         'App\\Models\\app_manager\\WindowAccess' => __DIR__ . '/../..' . '/app/Models/app_manager/WindowAccess.php',
         'App\\Models\\inventory\\ReceivingDetail' => __DIR__ . '/../..' . '/app/Models/inventory/ReceivingDetail.php',
@@ -3892,6 +3910,21 @@ class ComposerStaticInit4540799d9285b14c8e6e674b7c3a1c63
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'Yajra\\DataTables\\ApiResourceDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/ApiResourceDataTable.php',
+        'Yajra\\DataTables\\CollectionDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/CollectionDataTable.php',
+        'Yajra\\DataTables\\Contracts\\DataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Contracts/DataTable.php',
+        'Yajra\\DataTables\\DataTableAbstract' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/DataTableAbstract.php',
+        'Yajra\\DataTables\\DataTables' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/DataTables.php',
+        'Yajra\\DataTables\\DataTablesServiceProvider' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/DataTablesServiceProvider.php',
+        'Yajra\\DataTables\\EloquentDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/EloquentDataTable.php',
+        'Yajra\\DataTables\\Exceptions\\Exception' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Exceptions/Exception.php',
+        'Yajra\\DataTables\\Facades\\DataTables' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Facades/DataTables.php',
+        'Yajra\\DataTables\\Processors\\DataProcessor' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Processors/DataProcessor.php',
+        'Yajra\\DataTables\\Processors\\RowProcessor' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Processors/RowProcessor.php',
+        'Yajra\\DataTables\\QueryDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/QueryDataTable.php',
+        'Yajra\\DataTables\\Utilities\\Config' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Config.php',
+        'Yajra\\DataTables\\Utilities\\Helper' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Helper.php',
+        'Yajra\\DataTables\\Utilities\\Request' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Request.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

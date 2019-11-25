@@ -23,11 +23,9 @@
 					<tr>
 						<td>Slider id</td>
 						<td>Slider Title</td>
-						<td>Slider Description</td>
-						<td>Action</td>
-						{{-- <td>With Button</td>
+						<td>With Button</td>
 						<td>Is Active</td>
-						<td style="width: 230px;">Action</td> --}}
+						<td style="width: 230px;">Action</td>
 					</tr>
 				</thead>
 
@@ -40,22 +38,5 @@
  </div>
 
 </div>
-
-
-<script>
- $(function() {
-       $('#userTable').DataTable({
-       processing: true,
-       serverSide: true,
-       ajax: '{{ route('get.slider') }}',
-       columns: [
-                { data: 'SLIDER_ID', name: 'SLIDER_ID' },
-                { data: 'SLIDER_TITLE', name: 'SLIDER_TITLE' },
-                { data: 'SLIDER_DESC', name: 'SLIDER_DESC' },
-                { data: 'action' , name : 'action' , orderable : false , searchable : false }
-             ]
-    });
- });
- </script>
 
 @endsection

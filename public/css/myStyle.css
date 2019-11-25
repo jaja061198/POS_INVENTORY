@@ -1,0 +1,373 @@
+.login-page {
+  width: 98%;
+  height:auto;
+  padding: 1% 0 0;
+  margin: auto;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #f7faff;
+  max-width: 100%;
+  /*margin: 0 auto 100px;*/
+  padding: 20px 20px 60px 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+.btn-time{
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  min-width: 70%;
+}
+
+.btn-moreinfo {
+  height:20px;
+  width:20px;
+  font-size:12px;
+  color:#FFF;
+  padding:0px;
+  background-color:#fc7819;
+}
+
+.check-lg {
+  width:18px;
+  height:18px;
+  background:white;
+  border-radius:2px;
+  border:2px solid #555;
+}
+
+.metro-tile-static {
+  background-color: #D8512B;
+  border-color: #DC6241;
+  padding: 5px;
+  color: #FFF;
+  font-family: sans-serif;
+  font-size: 14px;
+  border-width: 3px;
+  border-style: solid;
+  cursor: default;
+  -webkit-transition: 0.1s all;
+  -moz-transition: 0.1s all;
+  -ms-transition: 0.1s all;
+  transition: 0.1s all;
+}
+
+.metro-tile-medium {
+  width: 150px;
+  height: 150px;
+}
+
+.metro-tile-small {
+  width: 100%;
+  height: 45px;
+}
+
+.metro-tile-lightgray {
+   background-position: 8px 8px;
+   background-color:#efefef;
+   border-color: #efefef;
+   color: #404244;
+}
+
+.metro-tile-gray {
+   background-position: 8px 8px;
+   background-color:#919191;
+   border-color: #919191;
+}
+
+.metro-tile-seagreen {
+   background-position: 8px 8px;
+   background-color:#239979;
+   border-color: #239979;
+}
+
+.metro-tile-aero {
+   background-position: 8px 8px;
+   background-color:#d0dcf4;
+   border-color: #d0dcf4;
+   color:#606266;
+}
+
+.metro-tile-blizzardblue {
+   background-position: 8px 8px;
+   background-color:#d6edf9;
+   border-color: #d6edf9;
+   color:#202021;
+}
+
+.chk-md {
+  display: block;
+  width:100%;
+  height: 18px;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  white-space: normal;
+  filter: alpha(opacity=0);
+  opacity: 0;
+
+  line-break: auto;
+}
+
+/*input[type="number"].borderless{
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+}*/
+
+input[type="number"].sm-area{
+  font-size: 12px;
+}
+
+/*input[type="text"].borderless{
+  width:80px; 
+  border:0px solid white;
+}*/
+
+/*textarea.borderless{
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+}*/
+
+.table-No2 {
+  margin-bottom: 25px;
+  width:100%;
+}
+.table-No2 td {
+  padding: 7px;
+  border-bottom: 0px solid #8C92AC;
+}
+
+.table-borderless {
+  margin-bottom: 25px;
+  width:100%;
+}
+.table-borderless td {
+  padding: 15px 7px 15px 7px;
+  border-bottom: 0px solid #8C92AC;
+}
+
+.table-borderless .timeline-bubble{
+  border-right: 1px solid #6a6b6d;
+  padding: 2px 2px 2px 2px;
+  width: 2%;
+}
+
+.table-borderless .timeline-content{
+  padding: 5px 2px 5px 5px;
+  width: 98%;
+}
+
+.table-borderless .timeline-breaker{
+  border:0px;
+  height: 15px;
+}
+
+
+.table-mobile {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+.table-mobile {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+.table-mobile tr {
+  /*background: #f8f8f8;*/
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+.table-mobile th,
+.table-mobile td {
+  padding: .625em;
+  /*text-align: center;*/
+}
+.table-mobile th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.table-gray {
+  background: #f8f8f8;
+}
+
+.form-div{
+  margin-bottom: 7px;
+  padding: 0px;
+}
+
+.div-padless{
+  padding: 2px;
+}
+
+.padless{
+  padding: 0px;
+}
+
+.chat-box-idle{
+  position: fixed; 
+  bottom: 0; 
+  right: 10; 
+  width: 300px; 
+  border: 1px solid #E9EBEE;
+  border-radius: 2px;
+  text-align: left;
+  padding:4px;
+  font-style: calibri;
+}
+
+.paddless{
+  padding: 0px;
+}
+
+.borderless{
+  border: 0px !important;
+}
+
+.primary-form{
+  background-color: #ffffff !important;
+}
+
+.checkbox-td{
+  background-color: #ffffff !important;
+}
+
+.ascii-form {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 0px;
+}
+.ascii-form:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.ascii-form::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+..ascii-form:-ms-input-placeholder {
+  color: #999;
+}
+..ascii-form::-webkit-input-placeholder {
+  color: #999;
+}
+..ascii-form::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+
+.responsive-img{
+  height: auto; 
+  width: 40%;
+}
+
+@media screen and (max-width: 600px) {
+  .responsive-img{
+    height: auto; 
+    width: 70%;
+  }
+
+  .table-mobile {
+    border: 0;
+  }
+  .table-mobile caption {
+    font-size: 1.3em;
+  }
+  .table-mobile thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table-mobile tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .table-mobile td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  .table-mobile td:before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table-mobile td:last-child {
+    border-bottom: 0;
+  }
+}
+
+
+@media (max-width: 1000px) {
+
+  #reportDIV {
+    display: none;
+  }
+
+  #smallscreenDIV:after {
+  content: "Please use larger screen.";
+  }
+}

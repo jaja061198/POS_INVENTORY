@@ -6,19 +6,10 @@ use App\Helpers\Helper;
 <head>
 	<title></title>
 
-	<link href="{{URL::asset('/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{{URL::asset('/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{URL::asset('/dist/css/sb-admin-2.css')}}" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <!-- <link href="{{URL::asset('/vendor/morrisjs/morris.css')}}" rel="stylesheet"> -->
+	<link href="{{URL::asset('/css/bootstrap.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{URL::asset('/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{URL::asset('/css/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
 
 </head>

@@ -2,7 +2,7 @@
 	use App\Http\Traits\app_manager\NavigationTraits;
 @endphp
 
-@extends('layouts.app')
+@extends('main_layouts.app')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 	<h5 class="page-header" style="color:blue;"><i class="fa fa-cog"></i> Navigation Category Settings</h5>
 </div>
 
-@include('layouts.messages')	
+@include('main_layouts.messages')	
 <div class="row" style="margin-top: 10px;">
 	
 	<div class="col-lg-12">

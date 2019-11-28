@@ -15,7 +15,7 @@ $('#addRow').click(function(){
 
 		+'<td style="padding:0px;"><div class="input-group"><input type="text" class="form-control item-code" id="item_code'+numRows+'" name="item_code[]" readonly placeholder="Item Code" required><input type="hidden" name="get_code[]" id="get_code'+numRows+'" onchange="populate(this.id)">'
 
-		+'<span class="input-group-btn"><button class="btn btn-primary" type="button" id="search_part'+numRows+'" name="search_part'+numRows+'" style="height: 39px; font-size: 12px; border-radius: 0px;" onclick="searchpartcode(this.name)"><i class="fa fa-search"></i></button></span></div></td>'
+		+'<span class="input-group-btn"><button class="btn btn-primary" type="button" id="search_part'+numRows+'" name="search_part'+numRows+'" style="height: 39px; font-size: 12px; border-radius: 0px;" onclick="searchpartcode(this.name)" data-target="#exampleModal" data-toggle="modal"><i class="fa fa-search"></i></button></span></div></td>'
 
 		+'<td style="padding:0px;"><input type="text" placeholder="Item Name" id="item_desc'+numRows+'" class="form-control" readonly></td>'
 
@@ -48,8 +48,8 @@ function searchpartcode(name)
 	var value = name;
 	var location = value.substr(11);
 	$('#code_holder').val(location).change();
-	$('#exampleModal').modal('toggle');
-	$('#exampleModal').modal('show');
+	// $('#exampleModal').modal('toggle');
+	// $('#exampleModal').modal('show');
 }
 
 

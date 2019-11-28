@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('main_layouts.app')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 	<h5 class="page-header" style="color:blue;"><i class="fa fa-cart-arrow-down"></i> Invoice</h5>
 </div>
 
-@include('layouts.messages')
+@include('main_layouts.messages')
 
 
 <div class="row">

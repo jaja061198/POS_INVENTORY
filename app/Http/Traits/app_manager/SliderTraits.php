@@ -11,6 +11,7 @@ use Response;
 use Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Yajra\Datatables\Datatables;
 
 trait SliderTraits
 {
@@ -19,5 +20,10 @@ trait SliderTraits
 	{
 		return view('POS.app_manager.e_com.slider')
 		->with('sliders',$this->getSliders());
+	}
+
+	public function retrieve()
+	{
+		return $this->serverSide();
 	}
 }

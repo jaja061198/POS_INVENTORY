@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('main_layouts.app')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 	<h5 class="page-header" style="color:blue;"><i class="fa fa-cog"></i> Company</h5>
 </div>
 
-@include('layouts.messages')	
+@include('main_layouts.messages')	
 <div class="row" style="margin-top: 10px;">
 	
 	<div class="col-lg-12">

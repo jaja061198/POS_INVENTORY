@@ -16,4 +16,9 @@ class SliderController extends Controller
     	return $this->indexFunction();
     }
 
+    public function getSlider()
+    {
+        return $this->retrieve();
+    }
+
 }

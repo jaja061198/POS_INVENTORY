@@ -1,7 +1,7 @@
 @php
   use App\Helpers\Helper;
 @endphp
-@extends('layouts.app')
+@extends('main_layouts.app')
 
 @section('content')
 <div id="page-wrapper">
@@ -9,7 +9,7 @@
   <h5 class="page-header" style="color:blue;"><i class="fa fa-cogs"></i> Item</h5>
 </div>
 
-@include('layouts.messages')  
+@include('main_layouts.messages')  
 <div class="form-row">
   <div class="form-group col-lg-12" align="right">
     <button type="button" class="btn btn-success" data-target="#exampleModal" data-toggle="modal"><i class="fa fa-plus"></i> Add Item</button>
@@ -47,8 +47,8 @@
              <td>{{ $element->getType['ITEM_TYPE_DESC'] }}</td>
               <td>{{ $element['QUANTITY'] }}</td>
              <td>
-               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['ITEM_CODE'] }}" style="color:white;"><i class="fa fa-edit" ></i></a>
-                <a class="btn btn-danger btn-xs" data-attr="{{ $element['ITEM_CODE'] }}" onclick="deleteModal(this)" style="color:white;"><i class="fa fa-trash"></i></a>
+               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['ITEM_CODE'] }}" style="color:white;"  data-target="#editModal" data-toggle="modal"><i class="fa fa-edit" ></i></a>
+                <a class="btn btn-danger btn-xs" data-attr="{{ $element['ITEM_CODE'] }}" onclick="deleteModal(this)" data-target="#deleteModal" data-toggle="modal" style="color:white;"><i class="fa fa-trash"></i></a>
              </td>
            </tr>
           @endforeach
@@ -58,6 +58,7 @@
 
   </div>
 </div>
+
 @include('POS.masterfile.item.add_item_modal')
 @include('POS.masterfile.item.edit_item_modal')
 @include('POS.masterfile.item.delete_item_modal')

@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      {{ Form::open(array('route' => 'update.item')) }}
+      {{ Form::open(array('route' => 'update.item', 'files' => true)) }}
       <div class="modal-body">
           
           <div class="form-group">
@@ -79,7 +79,7 @@
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"><i style="color:red;"></i> Description:</label>  <small style="color:red;visibility: hidden;" id="user_msg"><i></i></small>
-            <textarea class="form-control" id="edit_item_desc" name="edit_item_desc"></textarea>
+            <textarea class="form-control" id="edit_item_desc2" name="edit_item_desc2"></textarea>
           </div>
 
       </div>

@@ -52,16 +52,49 @@ trait ItemTraits
 
 	public function insertFunction(Request $request)
 	{
-		$details = [
-			'ITEM_CODE' => $request->input('add_item_code'),
-			'ITEM_DESC' => $request->input('add_item_desc'),
-			'ITEM_BRAND' => $request->input('add_item_brand'),
-			'ITEM_TYPE' => $request->input('add_item_type'),
-			'MIN_LEVEL' => $request->input('add_min_level'),
-			'MAX_LEVEL' => $request->input('add_max_level'),
-			'STANDARD_COST' => Helper::removeCommas($request->input('add_item_cost')),
-			'STANDARD_PRICE' => Helper::removeCommas($request->input('add_item_price')),
-		];
+
+		if ($request->hasFile('add_item_image')) 
+		{
+
+			$extension = Input::file('add_item_image')->getClientOriginalExtension();
+            $filename_old = Input::file('add_item_image')->getClientOriginalName();
+            $filesize = Input::file('add_item_image')->getClientSize();
+
+            $filename = rand(11111111, 99999999). '.' . $extension;
+            $fullPath = $filename;
+
+            $details = [
+				'ITEM_CODE' => $request->input('add_item_code'),
+				'ITEM_DESC' => $request->input('add_item_desc'),
+				'ITEM_BRAND' => $request->input('add_item_brand'),
+				'ITEM_TYPE' => $request->input('add_item_type'),
+				'MIN_LEVEL' => $request->input('add_min_level'),
+				'MAX_LEVEL' => $request->input('add_max_level'),
+				'STANDARD_COST' => Helper::removeCommas($request->input('add_item_cost')),
+				'STANDARD_PRICE' => Helper::removeCommas($request->input('add_item_price')),
+				'IMAGE' => 'img/'.$fullPath,
+				'DESCRIPTION' =>  $request->input('add_item_desc2'),
+			];
+
+            $request->file('add_item_image')->move(base_path('public/img/'), $filename);
+
+        }
+
+        else
+
+        {
+			$details = [
+				'ITEM_CODE' => $request->input('add_item_code'),
+				'ITEM_DESC' => $request->input('add_item_desc'),
+				'ITEM_BRAND' => $request->input('add_item_brand'),
+				'ITEM_TYPE' => $request->input('add_item_type'),
+				'MIN_LEVEL' => $request->input('add_min_level'),
+				'MAX_LEVEL' => $request->input('add_max_level'),
+				'STANDARD_COST' => Helper::removeCommas($request->input('add_item_cost')),
+				'STANDARD_PRICE' => Helper::removeCommas($request->input('add_item_price')),
+			];
+
+		}
 
 		ItemModel::insert($details);
 
@@ -72,18 +105,54 @@ trait ItemTraits
 
 	public function updateFunction(Request $request)
 	{
-		$details = [
-			'ITEM_CODE' => $request->input('edit_item_code'),
-			'ITEM_DESC' => $request->input('edit_item_desc'),
-			'ITEM_BRAND' => $request->input('edit_item_brand'),
-			'ITEM_TYPE' => $request->input('edit_item_type'),
-			'MIN_LEVEL' => $request->input('edit_min_level'),
-			'MAX_LEVEL' => $request->input('edit_max_level'),
-			'QUANTITY' => $request->input('edit_quantity'),
-			'STANDARD_COST' => Helper::removeCommas($request->input('edit_item_cost')),
-			'STANDARD_PRICE' => Helper::removeCommas($request->input('edit_item_price'))
-		];
 
+		if ($request->hasFile('edit_item_img')) 
+		{
+
+			$extension = Input::file('edit_item_img')->getClientOriginalExtension();
+            $filename_old = Input::file('edit_item_img')->getClientOriginalName();
+            $filesize = Input::file('edit_item_img')->getClientSize();
+
+            $filename = rand(11111111, 99999999). '.' . $extension;
+            $fullPath = $filename;
+
+
+			$details = [
+				'ITEM_CODE' => $request->input('edit_item_code'),
+				'ITEM_DESC' => $request->input('edit_item_desc'),
+				'ITEM_BRAND' => $request->input('edit_item_brand'),
+				'ITEM_TYPE' => $request->input('edit_item_type'),
+				'MIN_LEVEL' => $request->input('edit_min_level'),
+				'MAX_LEVEL' => $request->input('edit_max_level'),
+				'QUANTITY' => $request->input('edit_quantity'),
+				'STANDARD_COST' => Helper::removeCommas($request->input('edit_item_cost')),
+				'STANDARD_PRICE' => Helper::removeCommas($request->input('edit_item_price')),
+				'IMAGE' => 'img/'.$fullPath,
+				'DESCRIPTION' =>  $request->input('edit_item_desc2')
+			];
+
+			$request->file('edit_item_img')->move(base_path('public/img/'), $filename);
+		}
+
+		else
+
+		{
+
+			$details = [
+				'ITEM_CODE' => $request->input('edit_item_code'),
+				'ITEM_DESC' => $request->input('edit_item_desc'),
+				'ITEM_BRAND' => $request->input('edit_item_brand'),
+				'ITEM_TYPE' => $request->input('edit_item_type'),
+				'MIN_LEVEL' => $request->input('edit_min_level'),
+				'MAX_LEVEL' => $request->input('edit_max_level'),
+				'QUANTITY' => $request->input('edit_quantity'),
+				'STANDARD_COST' => Helper::removeCommas($request->input('edit_item_cost')),
+				'STANDARD_PRICE' => Helper::removeCommas($request->input('edit_item_price')),
+				'DESCRIPTION' =>  $request->input('edit_item_desc2')
+			];
+
+		}
+		
 		ItemModel::where('ITEM_CODE','=',$request->input('get_code'))->update($details);
 
 		Session::flash('success','Insert Success');

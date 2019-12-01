@@ -108,6 +108,8 @@
 				$('#edit_min_level').val(data.MIN_LEVEL);
 				$('#edit_max_level').val(data.MAX_LEVEL);
 				$('#edit_quantity').val(data.QUANTITY);
+				$('#edit_preview').attr('src','/'+data.IMAGE);
+				$('#edit_item_desc2').val(data.DESCRIPTION);
 			}
 		});
 		

@@ -13,7 +13,7 @@
 	});
 
 	
-	$('#add_user_btn').click(function(){
+	$('#add_user_btn').click(function(event){
 		
 		var fullname = $('#fullname').val();
 		var username = $('#username').val();
@@ -23,7 +23,7 @@
 
 		if(validateDataAdd(fullname, username , password , userlevel , email) == false)
 		{
-			return false;
+			event.preventDefault();
 		}
 		else
 		{

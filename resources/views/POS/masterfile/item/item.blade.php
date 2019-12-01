@@ -27,6 +27,7 @@
             <td>Item Code</td>
             <td>Item Description</td>
             <td>Standard Cost</td>
+            <td>Standard Price</td>
             <td>BRAND</td>
             <td>ITEM TYPE</td>
             <td>Quantity</td>
@@ -43,6 +44,7 @@
              <td>{{ $element['ITEM_CODE'] }}</td>
              <td >{{ $element['ITEM_DESC'] }}</td>
              <td >{{ Helper::numberFormat($element['STANDARD_COST']) }}</td>
+             <td >{{ Helper::numberFormat($element['STANDARD_PRICE']) }}</td>
              <td>{{ $element->getBrand['BRAND_DESC'] }}</td>
              <td>{{ $element->getType['ITEM_TYPE_DESC'] }}</td>
               <td>{{ $element['QUANTITY'] }}</td>

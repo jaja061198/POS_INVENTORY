@@ -58,8 +58,30 @@
 
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"><i style="color:red;">*</i> Standard Cost:</label>  <small style="color:red;visibility: hidden;" id="user_msg"><i></i></small>
-            <input type="text" class="form-control zero_rated" id="edit_item_cost" name="edit_item_cost" required value="0.00" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" onchange="calculateDiscount(this.id)">
+            <input type="text" class="form-control zero_rated" id="edit_item_cost" name="edit_item_cost" required value="0.00" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');">
           </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"><i style="color:red;">*</i> Standard Price:</label>  <small style="color:red;visibility: hidden;" id="user_msg"><i></i></small>
+            <input type="text" class="form-control zero_rated" id="edit_item_price" name="edit_item_price" required value="0.00" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"><i style="color:red;"></i> Image:</label>  <small style="color:red;visibility: hidden;" id="user_msg"><i></i></small>
+            <input type="file" class="form-control" id="edit_item_img" name="edit_item_img">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"><i style="color:red;"></i> Image Preview:</label>  <small style="color:red;visibility: hidden;" id="user_msg"><i></i></small>
+            <img id="edit_preview"  src="#" alt="your image" style="height: 80px;width: 80px;background-color: grey;">
+          </div>
+
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"><i style="color:red;"></i> Description:</label>  <small style="color:red;visibility: hidden;" id="user_msg"><i></i></small>
+            <textarea class="form-control" id="edit_item_desc" name="edit_item_desc"></textarea>
+          </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

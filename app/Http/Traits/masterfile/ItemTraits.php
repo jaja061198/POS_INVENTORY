@@ -60,6 +60,7 @@ trait ItemTraits
 			'MIN_LEVEL' => $request->input('add_min_level'),
 			'MAX_LEVEL' => $request->input('add_max_level'),
 			'STANDARD_COST' => Helper::removeCommas($request->input('add_item_cost')),
+			'STANDARD_PRICE' => Helper::removeCommas($request->input('add_item_price')),
 		];
 
 		ItemModel::insert($details);
@@ -80,6 +81,7 @@ trait ItemTraits
 			'MAX_LEVEL' => $request->input('edit_max_level'),
 			'QUANTITY' => $request->input('edit_quantity'),
 			'STANDARD_COST' => Helper::removeCommas($request->input('edit_item_cost')),
+			'STANDARD_PRICE' => Helper::removeCommas($request->input('edit_item_price'))
 		];
 
 		ItemModel::where('ITEM_CODE','=',$request->input('get_code'))->update($details);

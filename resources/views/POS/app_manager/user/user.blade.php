@@ -17,7 +17,7 @@
 	
 	<div class="col-lg-12">
 
-		<div class="panel panel-default" style=" font-size: 12px;">
+		{{-- <div class="panel panel-default" style=" font-size: 12px;"> --}}
 
 			<table class="table table-bordered" id="userTable">
 				<thead>
@@ -30,7 +30,7 @@
 				</thead>
 			</table>
 			 	
-		</div>
+		{{-- </div> --}}
 
 	</div>
 </div>
@@ -57,7 +57,7 @@ function editUser(btn)
 $(document).ready( function () {
 	$('#userTable').DataTable({
 		processing: true,
-		serverside: true,
+		serverSide: true,
 		language: {
 			processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
 		},
@@ -65,7 +65,7 @@ $(document).ready( function () {
 		ajax : {
 			"url" : "{{ route('serverside.users') }}",
 			"dataType" : "json",
-			"type" : "post",
+			"type" : "POST",
 			"data" : {"_token":"<?= csrf_token() ?>"}
 		},
 

@@ -10,10 +10,12 @@
 		$('#add_item_brand').val('');
 		$('#add_min_level').val('0');
 		$('#add_max_level').val('0');
-		$('#add_item_cost').val('0.00');
+		$('#add_item_cost').val('0');
+		$('#add_item_price').val('0');
 		$('#add_item_code').css('border-color','#D1D3E2');
 		$('#add_code_msg').css('visibility','hidden');
 		$('#add_item_btn').removeAttr('disabled');
+		$('#blah').attr('src','#');
 	});
 
 	$('#close_edit_modal').click(function(){
@@ -25,10 +27,12 @@
 		$('#edit_max_level').val('0');
 		$('#edit_quantity').val('0');
 		$('#edit_item_cost').val('0.00');
+		$('#edit_item_price').val('0.00');
 		$('#edit_item_desc').val('');
 		$('#edit_item_code').css('border-color','#D1D3E2');
 		$('#edit_code_msg').css('visibility','hidden');
 		$('#edit_item_btn').removeAttr('disabled');
+		$('#edit_preview').attr('src','#');
 	});
 
 	function validateCode(code)
@@ -98,6 +102,7 @@
 				$('#get_code').val(data.ITEM_CODE);
 				$('#edit_item_desc').val(data.ITEM_DESC);
 				$('#edit_item_cost').val(data.STANDARD_COST);
+				$('#edit_item_price').val(data.STANDARD_PRICE);
 				$('#edit_item_brand').val(data.ITEM_BRAND);
 				$('#edit_item_type').val(data.ITEM_TYPE);
 				$('#edit_min_level').val(data.MIN_LEVEL);
@@ -106,8 +111,8 @@
 			}
 		});
 		
-		// $('#editModal').modal('toggle');
-		// $('#editModal').modal('show');
+		$('#editModal').modal('toggle');
+		$('#editModal').modal('show');
 	}
 
 	function deleteModal(btn)
@@ -115,8 +120,8 @@
 		var value = $(btn).attr('data-attr');
 		$(".modal-body #code_display").html(value);
 		$("#code").val(value);
-		// $('#deleteModal').modal('toggle');
-		// $('#deleteModal').modal('show');
+		$('#deleteModal').modal('toggle');
+		$('#deleteModal').modal('show');
 	}
 
 
@@ -202,4 +207,39 @@ function PutComma(id){
 function removeComma(value){
   return (value.indexOf(',') > 0) ? value.replace(/\,/g,'') : value;
 }
+
+
+//for image preview on add
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#add_item_image").change(function(){
+    readURL(this);
+});
+
+function readURLEDIT(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#edit_preview').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#edit_item_img").change(function(){
+    readURLEDIT(this);
+});
+
 </script>

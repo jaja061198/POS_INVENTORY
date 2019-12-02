@@ -18,7 +18,7 @@
 <script src="{{URL::asset('/vendor/jquery/jquery.min.js')}}"></script>
 </head>
 
-<body style="background-image: url('{!! asset('img/bg.gif') !!}'); background-size:auto;">
+<body>
 
 
 <div id="wrapper" >

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('main_layouts.app')
 
 @section('content')
 <div id="page-wrapper">
@@ -6,7 +6,7 @@
   <h5 class="page-header" style="color:blue;"><i class="fa fa-cogs"></i> Brand</h5>
 </div>
 
-@include('layouts.messages')  
+@include('main_layouts.messages')  
 <div class="form-row">
   <div class="form-group col-lg-12" align="right">
     <button type="button" class="btn btn-success" data-target="#exampleModal" data-toggle="modal"><i class="fa fa-plus"></i> Add Brand</button>

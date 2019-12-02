@@ -34,28 +34,28 @@
 
 <script>
 
-// $(document).ready( function () {
-//   $('#item_table').DataTable({
-//     processing: true,
-//     serverside: true,
-//     language: {
-//       processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
-//     },
+$(document).ready( function () {
+  $('#item_table').DataTable({
+    processing: true,
+    serverSide: true,
+    language: {
+      processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+    },
 
-//     ajax : {
-//       "url" : "{{ route('serverside.receiving') }}",
-//       "dataType" : "json",
-//       "type" : "post",
-//       "data" : {"_token":"<?= csrf_token() ?>"}
-//     },
+    ajax : {
+      "url" : "{{ route('serverside.receiving') }}",
+      "dataType" : "json",
+      "type" : "post",
+      "data" : {"_token":"<?= csrf_token() ?>"}
+    },
 
-//     columns : [
-//           {"data":'ITEM_CODE'},
-//           {"data":'ITEM_DESC'},
-//           {"data":'ITEM_BRAND'},
-//     ]
-//   });
-// });
+    columns : [
+          {"data":'ITEM_CODE'},
+          {"data":'ITEM_DESC'},
+          {"data":'ITEM_BRAND'},
+    ]
+  });
+});
 
 
 $('#item_table').on('dblclick', 'tr', function() { //Function For Double Click
@@ -97,7 +97,8 @@ $('#item_table').on('dblclick', 'tr', function() { //Function For Double Click
 
      $('#'+code).val(value2).change();
      $('#'+get_code).val(value2).change();
-     $('#exampleModal').modal('hide');
+     $('#close_add_modal').click();
+     
 
 });//End of Function
 </script>

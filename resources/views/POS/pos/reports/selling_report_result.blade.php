@@ -8,8 +8,13 @@ use App\Helpers\Helper;
 
 	<link href="{{URL::asset('/css/bootstrap.css')}}" rel="stylesheet">
 
+<<<<<<< HEAD
     <!-- MetisMenu CSS -->
     <link href="{{URL::asset('/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
+=======
+    <!-- Custom Fonts -->
+    <link href="{{URL::asset('/css/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+>>>>>>> b1352f2bc34c4732cd121eae3627872b681be75e
 
 
 </head>

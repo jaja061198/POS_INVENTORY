@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('main_layouts.app')
 
 @section('content')
 <div id="page-wrapper">
@@ -6,7 +6,7 @@
   <h5 class="page-header" style="color:blue;"><i class="fa fa-cogs"></i> Item Type</h5>
 </div>
 
-@include('layouts.messages')  
+@include('main_layouts.messages')  
 <div class="form-row">
   <div class="form-group col-lg-12" align="right">
     <button type="button" class="btn btn-success" data-target="#exampleModal" data-toggle="modal"><i class="fa fa-plus"></i> Add Item Type</button>
@@ -43,8 +43,8 @@
              <td>{{ $element['ITEM_TYPE_CODE'] }}</td>
              <td >{{ $element['ITEM_TYPE_DESC'] }}</td>
              <td>
-               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['ITEM_TYPE_CODE'] }}" style="color:white;"><i class="fa fa-edit" ></i></a>
-                <a class="btn btn-danger btn-xs" data-attr="{{ $element['ITEM_TYPE_CODE'] }}" onclick="deleteModal(this)" style="color:white;"><i class="fa fa-trash"></i></a>
+               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['ITEM_TYPE_CODE'] }}" style="color:white;" data-target="#editModal" data-toggle="modal"><i class="fa fa-edit" ></i></a>
+                <a class="btn btn-danger btn-xs" data-attr="{{ $element['ITEM_TYPE_CODE'] }}" onclick="deleteModal(this)" style="color:white;" data-target="#deleteModal" data-toggle="modal"><i class="fa fa-trash"></i></a>
              </td>
            </tr>
           @endforeach

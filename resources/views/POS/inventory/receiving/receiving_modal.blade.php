@@ -37,7 +37,7 @@
 $(document).ready( function () {
   $('#item_table').DataTable({
     processing: true,
-    serverside: true,
+    serverSide: true,
     language: {
       processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
     },
@@ -97,7 +97,7 @@ $('#item_table').on('dblclick', 'tr', function() { //Function For Double Click
 
      $('#'+code).val(value2).change();
      $('#'+get_code).val(value2).change();
-     $('#exampleModal').modal('hide');
+     $('#close_add_modal').click();
 
 });//End of Function
 </script>

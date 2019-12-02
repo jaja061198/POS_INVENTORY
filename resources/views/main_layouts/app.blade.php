@@ -16,6 +16,7 @@
 <link href="{!! asset('css/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{!! asset('css/myStyle.css') !!}"/>
 <script src="{{URL::asset('/vendor/jquery/jquery.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('datatables/datatables.min.css') }}">
 </head>
 
 <body>

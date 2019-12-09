@@ -42,8 +42,8 @@
              <td >{{ Helper::numberFormat($element['STANDARD_COST']) }}</td>
 
              <td>
-               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['SERVICE_CODE'] }}" style="color:white;"><i class="fa fa-edit" ></i></a>
-                <a class="btn btn-danger btn-xs" data-attr="{{ $element['SERVICE_CODE'] }}" onclick="deleteModal(this)" style="color:white;"><i class="fa fa-trash"></i></a>
+               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['SERVICE_CODE'] }}" style="color:white;" data-target="#editModal" data-toggle="modal"><i class="fa fa-edit" ></i></a>
+                <a class="btn btn-danger btn-xs" data-attr="{{ $element['SERVICE_CODE'] }}" onclick="deleteModal(this)" style="color:white;"  data-target="#deleteModal" data-toggle="modal"><i class="fa fa-trash"></i></a>
              </td>
            </tr>
           @endforeach

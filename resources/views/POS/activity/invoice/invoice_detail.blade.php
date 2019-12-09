@@ -33,6 +33,8 @@
 
 	          <div class="col-lg-9">
 	          	
+	          	<h6 style="font-weight: bold;">Items</h6>
+
 	          	<table class="table table-bordered" id="tbl_receive">
 					<tr style="text-align: center;text-transform: uppercase;font-weight: bold;font-size: 10px;">
 						<td style="width: 200px;">Item Code</td>

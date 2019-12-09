@@ -43,8 +43,8 @@
              <td>{{ $element['BRAND_CODE'] }}</td>
              <td >{{ $element['BRAND_DESC'] }}</td>
              <td>
-               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['BRAND_CODE'] }}" style="color:white;"><i class="fa fa-edit" ></i></a>
-                <a class="btn btn-danger btn-xs" data-attr="{{ $element['BRAND_CODE'] }}" onclick="deleteModal(this)" style="color:white;"><i class="fa fa-trash"></i></a>
+               <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['BRAND_CODE'] }}" style="color:white;" data-target="#editModal" data-toggle="modal"><i class="fa fa-edit" ></i></a>
+                <a class="btn btn-danger btn-xs" data-attr="{{ $element['BRAND_CODE'] }}" onclick="deleteModal(this)" style="color:white;"  data-target="#deleteModal" data-toggle="modal"><i class="fa fa-trash"></i></a>
              </td>
            </tr>
           @endforeach

@@ -6,6 +6,7 @@ use App\User as UserModel;
 use App\Models\app_manager\WindowAccess as AccessModel;
 use App\Models\pos\InvoiceHeader as InvoiceHeaderModel;
 use App\Models\masterfile\Item as ItemModel;
+use App\Models\inventory\OrderHeader as OrderHeaderModel;
 use Carbon\Carbon;
 use DB;
 
@@ -180,5 +181,10 @@ class Helper
         return ItemModel::whereRaw('QUANTITY < MIN_LEVEL')->count();
     }
     
+
+     public static function getneworders()
+    {
+        return OrderHeaderModel::where('status','=','0')->count();
+    }
     
 }

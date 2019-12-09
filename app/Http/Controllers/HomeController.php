@@ -33,6 +33,9 @@ class HomeController extends Controller
 
         \Artisan::call('config:clear');
 
-        \Artisan::call('config:clear');
+        \Artisan::call('config:cache');
+
+        \Artisan::call('clear-compiled');
+
     }
 }

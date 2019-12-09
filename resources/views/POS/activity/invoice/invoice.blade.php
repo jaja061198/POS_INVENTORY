@@ -30,6 +30,8 @@
 		<div class="row">
 
 	          <div class="col-lg-9">
+
+	          	<h6 style="font-weight: bold;">Items</h6>
 	          	
 	          	<table class="table table-bordered" id="tbl_receive">
 					<tr style="text-align: center;text-transform: uppercase;font-weight: bold;font-size: 10px;">
@@ -48,6 +50,29 @@
 					<tr>
 						<td colspan="100%" align="right">
 							<button type="button" class="btn btn-primary" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-plus"></i></button>
+						</td>
+					</tr>
+				</table>
+
+
+				<h6 style="font-weight: bold;">Services</h6>
+
+
+				<table class="table table-bordered" id="tbl_receive">
+					<tr style="text-align: center;text-transform: uppercase;font-weight: bold;font-size: 10px;">
+						<td style="width: 200px;">Service Code</td>
+						<td style="width: 200px;">Service Name</td>
+						<td>Service Cost</td>
+						<td>Total Cost</td>
+						<td style="width: 40px;">Action</td>
+					</tr>
+
+					<tbody>
+						
+					</tbody>
+					<tr>
+						<td colspan="100%" align="right">
+							<button type="button" class="btn btn-primary" id="addRow2" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-plus"></i></button>
 						</td>
 					</tr>
 				</table>
@@ -79,6 +104,11 @@
 						<tr>
 							<td>Total Amount</td>
 							<td><input type="text" id="total_amount2" name="total_amount2" class="form-control" placeholder="0.00" readonly></td>
+						</tr>
+
+						<tr>
+							<td>Service Amount</td>
+							<td><input type="text" id="service_amount" name="service_amount" class="form-control" placeholder="0.00" readonly></td>
 						</tr>
 
 						<tr>

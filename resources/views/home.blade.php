@@ -265,7 +265,7 @@
 
            <div class="overviewcard overview-bg-red">
             <div class="overviewcard__icon"> <i class="fa fa-file"></i>  New Orders from Ecommerce</div>
-            <div class="overviewcard__info">1</div>
+            <div class="overviewcard__info"> {{ Helper::getneworders() }}</div>
           </div>
 
       </div>

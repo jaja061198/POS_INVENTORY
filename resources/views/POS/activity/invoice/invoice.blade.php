@@ -30,7 +30,7 @@
 		<div class="row">
 
 	          <div class="col-lg-9">
-	          	
+	          	<h5>ITEMS</h5>
 	          	<table class="table table-bordered" id="tbl_receive">
 					<tr style="text-align: center;text-transform: uppercase;font-weight: bold;font-size: 10px;">
 						<td style="width: 200px;">Item Code</td>
@@ -48,6 +48,27 @@
 					<tr>
 						<td colspan="100%" align="right">
 							<button type="button" class="btn btn-primary" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-plus"></i></button>
+						</td>
+					</tr>
+				</table>
+
+				<h5>SERVICES</h5>
+				<table class="table table-bordered" id="tbl_receive">
+					<tr style="text-align: center;text-transform: uppercase;font-weight: bold;font-size: 10px;">
+						<td style="width: 200px;">Service Code</td>
+						<td style="width: 200px;">Service Name</td>
+						<td>Service Cost</td>
+						<td>Discount</td>
+						<td>Total Cost</td>
+						<td style="width: 40px;">Action</td>
+					</tr>
+
+					<tbody>
+						
+					</tbody>
+					<tr>
+						<td colspan="100%" align="right">
+							<button type="button" class="btn btn-primary" id="addRow2" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-plus"></i></button>
 						</td>
 					</tr>
 				</table>

@@ -35,19 +35,59 @@ $('#addRow').click(function(){
 
 });
 
+
+//servie Modal
+
+var numRows3 = 0;
+	
+$('#addRow2').click(function(){
+
+
+	numRows4 = $("#tbl_service").length; // COUNTS THE NUMBER OF ROWS IN THE TABLE
+	numRows3+=1;
+	$row = $('<tr id="trList">'
+
+		+'<td style="padding:0px;"><div class="input-group"><input type="text" class="form-control item-code" id="service_code'+numRows3+'" name="service_code[]" readonly placeholder="Service Code" required><input type="hidden" name="get_code_service[]" id="get_code_service'+numRows3+'" onchange="populate2(this.id)">'
+
+		+'<span class="input-group-btn"><button class="btn btn-primary" type="button" id="search_part'+numRows3+'" name="search_part'+numRows3+'" style="height: 39px; font-size: 12px; border-radius: 0px;" onclick="searchServiceCode(this.name)" data-target="#serviceModal" data-toggle="modal"><i class="fa fa-search"></i></button></span></div></td>'
+
+		+'<td style="padding:0px;"><input type="text" placeholder="Service Name" id="service_desc'+numRows3+'" class="form-control" readonly></td>'
+
+		+'<td style="padding:0px;"><input type="text" min=1 id="service_cost'+numRows3+'"  name="service_cost[]" value="0.00" class="form-control service-cost" required readonly></td><input type="hidden" name="get_unit_cost[]">'
+
+		+'<td style="padding: 0px; vertical-align: middle; text-align: center;"><button onclick="deleteRow3(this)" style="background-color:transparent; border:0px; color:#F00;"><i class="fa fa-times fa-1x"></i></button></td>' 
+		+'</tr>'
+	);
+
+	$('#tbl_service').append($row);
+
+});
+
 function deleteRow3(btn) {
 	var row3 = btn.parentNode.parentNode;
 	row3.parentNode.removeChild(row3);
 	calculateTotalCost();
 	calculateTotalCost2();
 	calculateTotalDiscount();
+	calculateServiceCost();
 }
+
+
 
 function searchpartcode(name)
 {	
 	var value = name;
 	var location = value.substr(11);
 	$('#code_holder').val(location).change();
+	// $('#exampleModal').modal('toggle');
+	// $('#exampleModal').modal('show');
+}
+
+function searchServiceCode(name)
+{	
+	var value = name;
+	var location = value.substr(11);
+	$('#code_holder_service').val(location).change();
 	// $('#exampleModal').modal('toggle');
 	// $('#exampleModal').modal('show');
 }
@@ -78,8 +118,47 @@ function populate(element_id)
 }
 
 
+function populate2(element_id)
+{
+	// alert(element_id.substr(8));
+	var item = $('#'+element_id).val();
+
+	$.ajax({
+
+		type: "GET",
+		url : "{{ route('populate.invoice.service') }}",
+		cache: false,
+		data : {service_code:item},
+		success : function(data)
+		{
+
+			$('#service_desc'+element_id.substr(16)).val(data.datas['SERVICE_DESC']).change();
+			$('#service_cost'+element_id.substr(16)).val(PutComma(data.datas['STANDARD_COST'])).change();
+			calculateServiceCost();
+		}
+
+	});
+}
 
 
+
+
+function calculateServiceCost()
+{
+
+	sum = 0;
+
+
+		$(".service-cost").each(function() {
+			sum += parseFloat(removeComma(this.value));
+		});
+
+		sum = sum.toFixed(2);
+		document.getElementById('service_amount').value = PutComma(sum);
+		// document.getElementById('pay_amount').value = '0.00';
+		// document.getElementById('change').value = '0.00';
+	calculateTotalCost2();
+}
 
 function calculateQuantity(quantity)
 {	
@@ -162,6 +241,8 @@ function calculateTotalCost2()
 
 		additional_discount = removeComma(document.getElementById('additional_discount').value);
 
+		service_cost = removeComma(document.getElementById('service_amount').value);
+
 		total_discount = parseFloat(total_discount);
 
 		total_discount = total_discount.toFixed(2);
@@ -174,7 +255,7 @@ function calculateTotalCost2()
 
 		total_discounted_amt = total_discounted_amt.toFixed(2);
 
-		total_amount = parseFloat(total_amount);
+		total_amount = parseFloat(total_amount) + parseFloat(service_cost);
 
 		total_amount = total_amount.toFixed(2);
 

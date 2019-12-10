@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Input;
 use App\Models\pos\InvoiceHeader as InvoiceHeaderModel;
 use App\Models\pos\InvoiceDetail as InvoiceDetailsModel;
 use App\Models\masterfile\Item as ItemModel;
+use App\Models\masterfile\Service as ServiceModel;
 
 trait InvoiceTraits 
 {
@@ -65,7 +66,7 @@ trait InvoiceTraits
 			return back();
 		}
 
-		if($request->input('item_code') == null)
+		if($request->input('item_code') == null && $request->input('service_code') == null)
 		{
 			Session::flash('failed','Please Select the items that you want to Invoice');
 
@@ -79,6 +80,7 @@ trait InvoiceTraits
 			'CUSTOMER' => $request->input('customer'),
 			'DISCOUNT' => Helper::removeCommas($request->input('total_discount')),
 			'ADDITIONAL_DISC' => Helper::removeCommas($request->input('additional_discount')),
+			'SERVICE_COST' => Helper::removeCommas($request->input('service_amount')),
 			'GRAND_TOTAL' => Helper::removeCommas($request->input('total_amount')),
 			'GRAND_TOTAL2' => Helper::removeCommas($request->input('total_amount2')),
 			'CASH_AMOUNT' => Helper::removeCommas($request->input('pay_amount')),
@@ -87,25 +89,64 @@ trait InvoiceTraits
 
 		InvoiceHeaderModel::insert($header);
 
-		foreach($request->input('item_code') as $key => $value)
+		if ($request->input('item_code') != null) 
 		{
+			# code...
+		
 
-			$details = [
-				'INVOICE_NO' => $code_holder,
-				'LINE_NO' => $key+1,
-				'ITEM_CODE' => $request->input('item_code')[$key],
-				'PRICE' => Helper::removeCommas($request->input('unit_cost')[$key]),
-				'DISCOUNT' => Helper::removeCommas($request->input('discount')[$key]),
-				'QUANTITY' => Helper::removeCommas($request->input('quantity')[$key]),
-				'TOTAL_PRICE' => Helper::removeCommas($request->input('total_cost')[$key]),
-			];
+			foreach($request->input('item_code') as $key => $value)
+			{
 
-			// var_dump($request->input('get_quantity')[$key] - $request->input('quantity')[$key]);
-			InvoiceDetailsModel::insert($details);
+				$details = [
+					'INVOICE_NO' => $code_holder,
+					'LINE_NO' => $key+1,
+					'ITEM_CODE' => $request->input('item_code')[$key],
+					'PRICE' => Helper::removeCommas($request->input('unit_cost')[$key]),
+					'TYPE' => 1,
+					'DISCOUNT' => Helper::removeCommas($request->input('discount')[$key]),
+					'QUANTITY' => Helper::removeCommas($request->input('quantity')[$key]),
+					'TOTAL_PRICE' => Helper::removeCommas($request->input('total_cost')[$key]),
+				];
 
-			$this->updateQuantity($request->input('item_code')[$key], $request->input('quantity')[$key]);
+				// var_dump($request->input('get_quantity')[$key] - $request->input('quantity')[$key]);
+				InvoiceDetailsModel::insert($details);
 
-			// ItemModel::where('ITEM_CODE','=',$request->input('item_code')[$key])->update(['QUANTITY' => ($request->input('get_quantity')[$key] - $request->input('quantity')[$key] )]);
+				$this->updateQuantity($request->input('item_code')[$key], $request->input('quantity')[$key]);
+
+				// ItemModel::where('ITEM_CODE','=',$request->input('item_code')[$key])->update(['QUANTITY' => ($request->input('get_quantity')[$key] - $request->input('quantity')[$key] )]);
+
+			}
+
+		}
+
+
+		if ($request->input('service_code') != null) 
+		{
+			# code...
+		
+
+			foreach($request->input('service_code') as $key => $value)
+			{
+
+				$details = [
+					'INVOICE_NO' => $code_holder,
+					'LINE_NO' => 'service_line'.($key+1),
+					'ITEM_CODE' => $request->input('service_code')[$key],
+					'PRICE' => Helper::removeCommas($request->input('service_cost')[$key]),
+					'TYPE' => 2,
+					'DISCOUNT' => 0,
+					'QUANTITY' => 1,
+					'TOTAL_PRICE' => Helper::removeCommas($request->input('service_cost')[$key]),
+				];
+
+				// var_dump($request->input('get_quantity')[$key] - $request->input('quantity')[$key]);
+				InvoiceDetailsModel::insert($details);
+
+				// $this->updateQuantity($request->input('item_code')[$key], $request->input('quantity')[$key]);
+
+				// ItemModel::where('ITEM_CODE','=',$request->input('item_code')[$key])->update(['QUANTITY' => ($request->input('get_quantity')[$key] - $request->input('quantity')[$key] )]);
+
+			}
 
 		}
 
@@ -135,6 +176,92 @@ trait InvoiceTraits
 		return view('POS.activity.invoice.invoice_detail')
 		->with('header',InvoiceHeaderModel::where('INVOICE_NO','=',$id)->first())
 		->with('details',InvoiceDetailsModel::where('INVOICE_NO','=',$id)->get());
+	}
+
+	public function serverSideFunction(Request $request)
+	{
+		$columns = array(
+			0 => 'SERVICE_CODE',
+			1 => 'SERVICE_DESC',
+		);
+
+		$totalData = ServiceModel::count();
+		$limit = $request->input('length');
+		$start = $request->input('start');
+		$order = $columns[1];
+		$dir  = $request->input('order.1.dir');
+
+	
+		if(empty($request->input('search.value')))
+		{
+			$posts = $this->emptySearch($start, $limit, $order, $dir);
+
+			$totalFiltered = ServiceModel::count();
+			// $totalFiltered = ItemModel::count();
+		}
+		else
+		{
+			$search = $request->input('search.value');
+
+			$posts = $this->ifNotEmptySearch($search, $limit, $order, $dir, $start);
+
+			
+				$totalFiltered = ServiceModel::where('SERVICE_CODE','like',"%{$search}%")
+										->orWhere('SERVICE_DESC','like',"%{$search}%")
+										->count();
+		}
+
+		$data = array();
+
+		if($posts)
+		{
+			foreach ($posts as $key => $value) 
+			{
+				$code = Crypt::encrypt($value->SERVICE_CODE);
+				$nestedData['SERVICE_CODE'] = $value->SERVICE_CODE;
+				$nestedData['SERVICE_DESC'] = $value->SERVICE_DESC;
+				$nestedData['STANDARD_COST'] = $value->STANDARD_COST;
+				$data[] = $nestedData;
+			} 	
+		}
+
+		$json_data = array(
+			"draw" => intVal($request->input('draw')),
+			"recordsTotal" => intVal($totalData),
+			"recordsFiltered" => intval($totalFiltered),
+			"data" => $data
+		);
+
+		echo json_encode($json_data);
+	}
+
+
+
+	public function emptySearch($START, $LIMIT , $ORDER , $DIR)
+	{
+
+		return $posts = ServiceModel::limit($LIMIT)
+				->offset($START)
+				->orderBy($ORDER,$DIR)
+				->get();
+	}
+
+	public function ifNotEmptySearch($SEARCH, $LIMIT, $ORDER, $DIR, $START)
+	{
+
+		return $posts = ServiceModel::where('SERVICE_CODE','like',"%{$SEARCH}%")
+						->orWhere('SERVICE_DESC','like',"%{$SEARCH}%")
+						->offset($START)
+						->limit($LIMIT)
+						->orderBy($ORDER,$DIR)
+						->get();
+	}
+
+	public function populateFunction(Request $request)
+	{
+		$finder = ServiceModel::where('SERVICE_CODE','=',$request->input('service_code'))->first();
+
+		return response()->json(['datas' => $finder]);
 	}
 
 }

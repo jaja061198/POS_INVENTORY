@@ -43,4 +43,5 @@ Route::get('inventory/reports/inventoryvalue','inventory\InventoryReportControll
 
 Route::post('inventory/reports/inventoryvalue','inventory\InventoryReportController@generate')->name('post.value.inventory.report');
 
+
 });

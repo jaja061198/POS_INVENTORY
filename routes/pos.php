@@ -28,6 +28,9 @@ Route::get('pos/invoice/list','pos\InvoiceController@indexList')->name('invoice.
 
 Route::get('pos/invoice/view/{id}','pos\InvoiceController@show')->name('invoice.show');
 
+Route::post('inventory/serverside/services' , 'pos\InvoiceController@serverside')->name('serverside.invoice.service');
+
+Route::get('inventory/serverside/services' , 'pos\InvoiceController@populate')->name('populate.invoice.service');
 
 //REPORTS
 

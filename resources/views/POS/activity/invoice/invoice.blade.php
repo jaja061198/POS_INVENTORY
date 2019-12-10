@@ -58,12 +58,12 @@
 				<h6 style="font-weight: bold;">Services</h6>
 
 
-				<table class="table table-bordered" id="tbl_receive">
+				<table class="table table-bordered" id="tbl_service">
 					<tr style="text-align: center;text-transform: uppercase;font-weight: bold;font-size: 10px;">
 						<td style="width: 200px;">Service Code</td>
 						<td style="width: 200px;">Service Name</td>
 						<td>Service Cost</td>
-						<td>Total Cost</td>
+						{{-- <td>Total Cost</td> --}}
 						<td style="width: 40px;">Action</td>
 					</tr>
 
@@ -87,38 +87,39 @@
 						</tr>
 
 						<tr>
-							<td>Total</td>
-							<td><input type="text" id="total_amount" name="total_amount" class="form-control" placeholder="0.00" readonly required></td>
+							<td>Total Item Cost</td>
+							<td><input type="text" id="total_amount" name="total_amount" class="form-control" value="0.00" readonly required style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Total Item Discount</td>
-							<td><input type="text" class="form-control" id="total_discount"  name="total_discount" placeholder="0.00" readonly></td>
-						</tr>
-
-						<tr>
-							<td>Additional Discount</td>
-							<td><input type="text" class="form-control" onchange="calculateAdditionalDiscount()" id="additional_discount" name="additional_discount" value="0.00" onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');"></td>
-						</tr>
-
-						<tr>
-							<td>Total Amount</td>
-							<td><input type="text" id="total_amount2" name="total_amount2" class="form-control" placeholder="0.00" readonly></td>
+							<td><input type="text" class="form-control" id="total_discount"  name="total_discount" value="0.00" readonly style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Service Amount</td>
-							<td><input type="text" id="service_amount" name="service_amount" class="form-control" placeholder="0.00" readonly></td>
+							<td><input type="text" id="service_amount" name="service_amount" class="form-control" value="0.00" readonly style="text-align: right;"></td>
+						</tr>
+
+						<tr>
+							<td>Additional Discount</td>
+							<td><input type="text" class="form-control" onchange="calculateAdditionalDiscount()" id="additional_discount" name="additional_discount" value="0.00" onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" style="text-align: right;"></td>
+						</tr>
+						
+
+						<tr>
+							<td>Total Amount</td>
+							<td><input type="text" id="total_amount2" name="total_amount2" class="form-control" value="0.00" readonly style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Pay Amount</td>
-							<td><input type="text" class="form-control" id="pay_amount" name="pay_amount" onchange="calculateChange()" value="0.00" onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" required></td>
+							<td><input type="text" class="form-control" id="pay_amount" name="pay_amount" onchange="calculateChange()" value="0.00" onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" required style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Change</td>
-							<td><input type="text" id="change" name="change" class="form-control" placeholder="0.00" readonly></td>
+							<td><input type="text" id="change" name="change" class="form-control" placeholder="0.00" readonly style="text-align: right;"></td>
 						</tr>
 
 
@@ -142,6 +143,7 @@
 </div>
 </div>
 @include('POS.activity.invoice.invoice_modal')
+@include('POS.activity.invoice.service_modal')
 @include('POS.activity.invoice.invoice_scripts')
 
 @endsection

@@ -47,13 +47,45 @@
 
 					<tbody>
 						@foreach($details as $key => $value)
-							<tr>
-								<td>{{ $value['ITEM_CODE'] }}</td>
-								<td>{{ $value['ITEM_CODE'] }}</td>
-								<td>{{ $value['QUANTITY'] }}</td>
-								<td>{{ Helper::numberFormat($value['PRICE']) }}</td>
-								<td>{{ Helper::numberFormat( $value['DISCOUNT']) }}</td>
-								<td>{{ Helper::numberFormat($value['TOTAL_PRICE']) }}</td>
+
+							@if($value['TYPE'] == 1)
+								<tr>
+									<td>{{ $value['ITEM_CODE'] }}</td>
+									<td>{{ $value['ITEM_CODE'] }}</td>
+									<td>{{ $value['QUANTITY'] }}</td>
+									<td>{{ Helper::numberFormat($value['PRICE']) }}</td>
+									<td>{{ Helper::numberFormat( $value['DISCOUNT']) }}</td>
+									<td>{{ Helper::numberFormat($value['TOTAL_PRICE']) }}</td>
+								</tr>
+							@endif
+
+						@endforeach
+					</tbody>
+
+				</table>
+
+
+
+				<h6 style="font-weight: bold;">Services</h6>
+
+	          	<table class="table table-bordered" id="tbl_receive">
+					<tr style="text-align: center;text-transform: uppercase;font-weight: bold;font-size: 10px;">
+						<td style="width: 200px;">Service Code</td>
+						<td style="width: 200px;">Service Name</td>
+						<td>Service Cost</td>
+					</tr>
+
+					<tbody>
+						@foreach($details as $key => $value)
+
+							@if($value['TYPE'] == 2)
+								<tr>
+									<td>{{ $value['ITEM_CODE'] }}</td>
+									<td>{{ $value['ITEM_CODE'] }}</td>
+									<td style="text-align: right;">{{ Helper::numberFormat($value['TOTAL_PRICE']) }}</td>
+								</tr>
+							@endif
+
 						@endforeach
 					</tbody>
 
@@ -65,37 +97,43 @@
 	          		<table class="table table-bordered" id="tbl_receive">
 						<tr>
 							<td>Customer</td>
-							<td><input type="text" class="form-control" placeholder="Customer" name="customer" readonly value="{{ $header['CUSTOMER'] }}"></td>
+							<td ><input type="text" class="form-control" placeholder="Customer" name="customer" readonly value="{{ $header['CUSTOMER'] }}"></td>
 						</tr>
 
 						<tr>
 							<td>Total</td>
-							<td><input type="text" id="total_amount" name="total_amount" class="form-control" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['GRAND_TOTAL']) }}"></td>
+							<td><input type="text" id="total_amount" name="total_amount" class="form-control" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['GRAND_TOTAL']) }}" style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Total Item Discount</td>
-							<td><input type="text" class="form-control" id="total_discount"  name="total_discount" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['DISCOUNT']) }}"></td>
+							<td><input type="text" class="form-control" id="total_discount"  name="total_discount" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['DISCOUNT']) }}" style="text-align: right;"></td>
 						</tr>
 
 						<tr>
+							<td>Service Amount</td>
+							<td><input type="text" id="total_amount" name="total_amount" class="form-control" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['SERVICE_COST']) }}" style="text-align: right;"></td>
+						</tr>
+
+
+						<tr>
 							<td>Additional Discount</td>
-							<td><input type="text" class="form-control" onchange="calculateAdditionalDiscount()" id="additional_discount" name="additional_discount" value="0.00" onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" readonly value="{{ Helper::numberFormat($header['ADDITIONAL_DISC']) }}"></td>
+							<td><input type="text" class="form-control" onchange="calculateAdditionalDiscount()" id="additional_discount" name="additional_discount"  onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" readonly value="{{ Helper::numberFormat($header['ADDITIONAL_DISC']) }}" style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Total Amount</td>
-							<td><input type="text" id="total_amount2" name="total_amount2" class="form-control" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['GRAND_TOTAL2']) }}"></td>
+							<td><input type="text" id="total_amount2" name="total_amount2" class="form-control" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['GRAND_TOTAL2']) }}" style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Pay Amount</td>
-							<td><input type="text" class="form-control" id="pay_amount" name="pay_amount" onchange="calculateChange()" onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" readonly value="{{ Helper::numberFormat($header['CASH_AMOUNT']) }}"></td>
+							<td><input type="text" class="form-control" id="pay_amount" name="pay_amount" onchange="calculateChange()" onclick="clickme(this)" onclick="clickme(this)" onblur="blurme(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\\./g, \'$1\');" readonly value="{{ Helper::numberFormat($header['CASH_AMOUNT']) }}" style="text-align: right;"></td>
 						</tr>
 
 						<tr>
 							<td>Change</td>
-							<td><input type="text" id="change" name="change" class="form-control" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['CHANGE']) }}"></td>
+							<td><input type="text" id="change" name="change" class="form-control" placeholder="0.00" readonly value="{{ Helper::numberFormat($header['CHANGE']) }}" style="text-align: right;"></td>
 						</tr>
 
 

@@ -21,9 +21,19 @@ class InvoiceController extends Controller
         return view('POS.activity.invoice.invoice');
     }
 
+    public function serverSide(Request $request)
+    {
+        return $this->serverSideFunction($request);
+    }
+
     public function indexList()
     {
         return $this->invoiceListFunction();
+    }
+
+    public function populate(Request $request)
+    {
+        return $this->populateFunction($request);
     }
 
     /**

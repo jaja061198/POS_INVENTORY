@@ -92,8 +92,8 @@
 			}
 		});
 		
-		$('#editModal').modal('toggle');
-		$('#editModal').modal('show');
+		// $('#editModal').modal('toggle');
+		// $('#editModal').modal('show');
 	}
 
 	function deleteModal(btn)
@@ -101,8 +101,8 @@
 		var value = $(btn).attr('data-attr');
 		$(".modal-body #code_display").html(value);
 		$("#code").val(value);
-		$('#deleteModal').modal('toggle');
-		$('#deleteModal').modal('show');
+		// $('#deleteModal').modal('toggle');
+		// $('#deleteModal').modal('show');
 	}
 
 

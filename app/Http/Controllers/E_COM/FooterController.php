@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\E_COM;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+use Session;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\Controller;
+use App\Models\e_com\Footer as FooterModel;
+
+class FooterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +20,8 @@ class IndexController extends Controller
     {
         //
         //
-        return view('E_COM.pages.index');
+        return view('E_COM.footer.footer')
+        ->with('items',FooterModel::first());
     }
 
     /**
@@ -69,9 +74,22 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $details = [
+            'contact' => $request->input('contact'),
+            'facebook' => $request->input('facebook'),
+            'twitter' => $request->input('twitter'),
+            'instagram' => $request->input('instagram'),
+            'email' => $request->input('email'),
+        ];
+
+        FooterModel::where('id','=',$request->input('get_id'))->update($details);
+
+        Session::flash('success','Upadate Success');
+
+        return back();
     }
 
     /**

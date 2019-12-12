@@ -182,9 +182,15 @@ class Helper
     }
     
 
-     public static function getneworders()
+    public static function getneworders()
     {
         return OrderHeaderModel::where('status','=','0')->count();
+    }
+
+
+    public static function retrieveMinimumItems()
+    {
+        return ItemModel::whereRaw('QUANTITY < MIN_LEVEL')->get();
     }
     
 }

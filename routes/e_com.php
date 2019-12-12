@@ -12,10 +12,19 @@
 */
 
 
-Route::get('/shop/index','E_COM\IndexController@index')->name('ecom.index');
+
 
 
 Route::group(['middleware' => 'auth'], function () 
 {
+	Route::get('/e_com/settings/welcome','E_COM\WelcomeController@index')->name('welcome.ecom.index');
+
+	Route::post('/e_com/settings/welcome/update','E_COM\WelcomeController@update')->name('update.welcome.ecom.index');
+
+	//Footer 
+	
+	Route::get('/e_com/settings/footer','E_COM\FooterController@index')->name('welcome.footer.index');
+
+	Route::post('/e_com/settings/footer/update','E_COM\FooterController@update')->name('update.footer.index');
 
 });

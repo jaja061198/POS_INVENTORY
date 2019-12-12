@@ -260,7 +260,7 @@
 
            <div class="overviewcard overview-bg-yellow">
             <div class="overviewcard__icon"> <i class="fa fa-cog"></i>  Items below minimum level</div>
-            <div class="overviewcard__info"> {{ Helper::getMinimumItems() }}</div>
+            <div class="overviewcard__info"> {{ Helper::getMinimumItems() }} <button type="button" class="btn btn-danger" onclick="showModal()" style="border-radius: 40px;"><i class="fa fa-info-circle"></i></button></div>
           </div>
 
            <div class="overviewcard overview-bg-red">
@@ -270,5 +270,6 @@
 
       </div>
 
+@include('home_modals')
 
 @endsection

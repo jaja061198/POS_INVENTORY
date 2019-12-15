@@ -27,4 +27,11 @@ Route::group(['middleware' => 'auth'], function ()
 
 	Route::post('/e_com/settings/footer/update','E_COM\FooterController@update')->name('update.footer.index');
 
+
+	//new Orders
+
+	Route::get('/ordersonline/neworders','E_COM\OrderController@index')->name('new.orders.index');
+
+	Route::get('/ordersonline/neworders/review/{id}','E_COM\OrderController@show')->name('new.orders.review');
+
 });

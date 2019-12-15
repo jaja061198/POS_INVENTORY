@@ -1,4 +1,4 @@
-<?php use App\Http\Traits\pos\InvoiceReportTraits;
+<?php use App\Http\Controllers\pos\SalesReportController;
 use App\Helpers\Helper;
  ?>
 <!DOCTYPE html>
@@ -41,9 +41,10 @@ body {
 </style>
 @php
 
-$data_count = InvoiceReportTraits::countData($brand,$type);
 
-$count = $data_count; // Counts the number of items
+
+
+$count = SalesReportController::getWeeklyData($week_start,$week_end);
 
 $page_count = 0; 
 
@@ -101,12 +102,12 @@ $skip = 0;
 						<td style="text-align: right;width: 40px;"><font style="font-weight: bold;">Date:</font></td>
 						<td style="border-right: 1px solid black;">&nbsp; {{ date('m-d-Y') }}</td>
 						<td style="text-align: left;width: 90px;">&nbsp;<font style="font-weight: bold;">Report Type:</font></td>
-						<td style="border-right: 1px solid black;">Worst Selling Items Report</td>
+						<td style="border-right: 1px solid black;">Weekly Sales Report</td>
 						<td style="text-align: right;width: 60px;"><font style="font-weight: bold;font-family: Courier new;">Page No.:</font></td>
 						<td style="font-family: Courier new;">&nbsp; {{ $i + 1 }}</td>
 					</tr>					
 				</table>
-				<p style="font-weight: bold;font-size: 13px;padding: 10px;">Worst Selling Items for the month of {{ date('M-Y', strtotime($date_sort)) }}</p>
+				<p style="font-weight: bold;font-size: 13px;padding: 10px;;">Sales Report for the week of {{ date('M-d-Y', strtotime($week_start)) }} to {{ date('M-d-Y', strtotime($week_end)) }}</p>
 				</div>
 
 
@@ -114,42 +115,73 @@ $skip = 0;
 
 				<thead>
 				<tr style="border:1px solid black;">
-					<th style="padding-left: 5px;">ITEM CODE</th>
-					<th>ITEM NAME</th>
-					<th>BRAND</th>
-					<th>ITEM TYPE</th>
+					<th>INVOICE #</th>
+					<th>TYPE</th>
+					<th style="padding-left: 5px;">ITEM/SERVICE CODE</th>
+					<th>ITEM/SERVICE NAME</th>
 					<th>QUANTITY SOLD</th>
+					<th>TOTAL</th>
 				</tr>
 				</thead>
 
 				<tbody>
-				@php
-					$data_list = InvoiceReportTraits::getData($brand, $type , $skip, 50,$date_sort);
-				@endphp
-
-
-					@foreach(InvoiceReportTraits::worst_selling($data_list,'COUNT') as $key => $value)
-					
-
+		
 					@php
-						$items_counter +=1;
-					@endphp
+						$data_list = SalesReportController::retrieveWeeklyData($week_start,$week_end, $skip, 50);
+					@endphp}
 
-					<tr style="font-size: 11px;font-family: calibri;font-weight: bold;">
-						<td>{{ $value['ITEM_CODE'] }}</td>
-						<td>{{ $value['ITEM_DESC'] }}</td>
-						<td>{{ $value['ITEM_BRAND'] }}</td>
-						<td>{{ $value['ITEM_TYPE'] }}</td>
-						<td>{{ $value['COUNT'] }}</td>
-					</tr>
+					@foreach($data_list as $key => $value)
+
+
+							@php
+								$items_counter +=1;
+							@endphp
+
+							<tr style="font-size: 11px;font-family: calibri;font-weight: bold;">
+								<td>{{ $value['INVOICE'] }}</td>
+								<td>{{ $value['TYPE'] }}</td>
+								<td>{{ $value['CODE'] }}</td>
+								<td>{{ $value['DESC'] }}</td>
+								<td>{{ $value['QUANTITY'] }}</td>
+								<td style="text-align: right;">{{ Helper::numberFormat($value['TOTAL_PRICE']) }}</td>
+
+								@php
+									$total += $value['TOTAL_PRICE'];
+								@endphp
+							</tr>
+							
 
 					@endforeach
-					
 
 					@if ($items_counter >= 50)
 						@php
 							$skip +=50;
 						@endphp
+					@endif
+
+
+					@if ($p_count == $page_count)
+
+
+					<tr style="font-size: 12px;font-family: calibri;font-weight: bold;border: 1px solid black;background-color: yellow;">
+						<td colspan="4"></td>
+						<td>Total : </td>
+						<td style="text-align: right;">{{ Helper::numberFormat($total) }}</td>
+					<tr>
+
+
+					<tr style="font-size: 12px;font-family: calibri;font-weight: bold;border: 1px solid black;background-color: yellow;">
+						<td colspan="4"></td>
+						<td>Total Discount: </td>
+						<td style="text-align: right;">{{ Helper::numberFormat(SalesReportController::getTotalDiscountWeekly($week_start,$week_end)) }}</td>
+					<tr>
+						
+					<tr style="font-size: 12px;font-family: calibri;font-weight: bold;border: 1px solid black;background-color: yellow;">
+						<td colspan="4"></td>
+						<td>Total Sales: </td>
+						<td style="text-align: right;">{{ Helper::numberFormat($total - SalesReportController::getTotalDiscountWeekly($week_start,$week_end)) }}</td>
+					<tr>
+
 					@endif
 
 				</tbody>

@@ -45,6 +45,55 @@
   </div>
 </div>
 
+
+
+
+{{-- E com modals --}}
+
+
+<div class="modal fade" id="ecom_orders" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-lg" role="document" style="margin-top: 50px; width: 85%;height: 100%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:red;text-transform: uppercase;font-weight: bold;">New Ecommerce Orders</h5>
+        <button id="close_add_modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+          
+          <table class="table table-bordered" id="userTable" style="color:black;">
+            <thead>
+              <tr style="text-align: center;text-transform: uppercase;font-weight: bold;">
+                <td>Order #</td>
+                <td>Date Ordered</td>
+                <td>Review</td>
+                {{-- <td>Customer Name</td> --}}
+              </tr>
+            </thead>
+
+            <tbody>
+              @foreach (Helper::retrieveOrders() as $element)
+                  <tr>
+                    <td>{{ $element['order_no'] }}</td>
+                    <td>{{ $element['date_ordered'] }}</td>
+                    <td><a href="{{ route('new.orders.review',['id' => str_replace("#","w",$element['order_no'])]) }}" class="btn btn-xs btn-primary"><i class="fa fa-search"></i></a></td>
+                    {{-- <td>{{ Helper::getUserLevel($element['user'])->name }}</td> --}}
+              @endforeach
+            </tbody>
+          </table>
+      </div>
+
+      <div class="modal-footer">
+        {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="add_brnd_btn" class="btn btn-primary">Save</button> --}}
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
 
 function showModal()
@@ -52,5 +101,13 @@ function showModal()
     $('#exampleModal').modal('toggle');
     $('#exampleModal').modal('show');
 }
+
+
+function showModal2()
+{
+    $('#ecom_orders').modal('toggle');
+    $('#ecom_orders').modal('show');
+}
+
 
 </script>

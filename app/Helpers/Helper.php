@@ -133,6 +133,11 @@ class Helper
         return UserModel::where('id','=',$USER_ID)->select('user_level')->first();
     }
 
+    public static function getUserInfo($USER_ID)
+    {
+        return UserModel::where('id','=',$USER_ID)->first();
+    }
+
     public static function getCheckBoxValue($checkbox_value)
     {
         $chk_name = $checkbox_value;
@@ -191,6 +196,17 @@ class Helper
     public static function retrieveMinimumItems()
     {
         return ItemModel::whereRaw('QUANTITY < MIN_LEVEL')->get();
+    }
+
+
+    public static function retrieveOrders()
+    {
+        return OrderHeaderModel::where('status','=',0)->get();
+    }
+
+    public static function getIteminfo($item_code)
+    {
+        return ItemModel::where('ITEM_CODE','=',$item_code)->first();
     }
     
 }

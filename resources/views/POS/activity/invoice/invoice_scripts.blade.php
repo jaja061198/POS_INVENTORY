@@ -4,6 +4,28 @@
 
 <script>
 
+$('#submitbtm').click(function(event){
+
+var ret = true;
+$(".required").each( function() {
+    var check = $(this).val();
+
+    if(check == '') {
+        //alert($(this).attr("id"));
+        ret = false;
+        event.preventDefault();
+    }
+});
+
+if(!ret) {
+    alert("One or more fields cannot be blank");
+    event.preventDefault();
+    return false;
+}
+
+$('#invoice_form').submit();
+
+});
 var numRows = 0;
 	
 $('#addRow').click(function(){
@@ -13,7 +35,7 @@ $('#addRow').click(function(){
 	numRows+=1;
 	$row = $('<tr id="trList">'
 
-		+'<td style="padding:0px;"><div class="input-group"><input type="text" class="form-control item-code" id="item_code'+numRows+'" name="item_code[]" readonly placeholder="Item Code" required><input type="hidden" name="get_code[]" id="get_code'+numRows+'" onchange="populate(this.id)">'
+		+'<td style="padding:0px;"><div class="input-group"><input type="text" class="form-control item-code required" id="item_code'+numRows+'" name="item_code[]"  placeholder="Item Code" required onchange="populate3(this.id)"><input type="hidden" name="get_code[]" id="get_code'+numRows+'" onchange="populate(this.id)" >'
 
 		+'<span class="input-group-btn"><button class="btn btn-primary" type="button" id="search_part'+numRows+'" name="search_part'+numRows+'" style="height: 39px; font-size: 12px; border-radius: 0px;" onclick="searchpartcode(this.name)" data-target="#exampleModal" data-toggle="modal"><i class="fa fa-search"></i></button></span></div></td>'
 
@@ -27,16 +49,19 @@ $('#addRow').click(function(){
 
 		+'<td style="padding:0px;"><input type="text" min=1 name="total_cost[]" value="0.00" id="total_cost'+numRows+'" class="form-control total-cost" readonly></td>'
  
-		+'<td style="padding: 0px; vertical-align: middle; text-align: center;"><button onclick="deleteRow3(this)" style="background-color:transparent; border:0px; color:#F00;"><i class="fa fa-times fa-1x"></i></button></td>' 
+		+'<td style="padding: 0px; vertical-align: middle; text-align: center;"><button type="button" onclick="deleteRow3(this)" style="background-color:transparent; border:0px; color:#F00;"><i class="fa fa-times fa-1x"></i></button></td>' 
 		+'</tr>'
 	);
 
 	$('#tbl_receive').append($row);
 
+	$( "#item_code"+numRows ).focus();
+
 });
 
 
 //servie Modal
+
 
 var numRows3 = 0;
 	
@@ -47,7 +72,7 @@ $('#addRow2').click(function(){
 	numRows3+=1;
 	$row = $('<tr id="trList">'
 
-		+'<td style="padding:0px;"><div class="input-group"><input type="text" class="form-control item-code" id="service_code'+numRows3+'" name="service_code[]" readonly placeholder="Service Code" required><input type="hidden" name="get_code_service[]" id="get_code_service'+numRows3+'" onchange="populate2(this.id)">'
+		+'<td style="padding:0px;"><div class="input-group"><input type="text" class="form-control" id="service_code'+numRows3+'" name="service_code[]" readonly placeholder="Service Code" required><input type="hidden" name="get_code_service[]" id="get_code_service'+numRows3+'" onchange="populate2(this.id)">'
 
 		+'<span class="input-group-btn"><button class="btn btn-primary" type="button" id="search_part'+numRows3+'" name="search_part'+numRows3+'" style="height: 39px; font-size: 12px; border-radius: 0px;" onclick="searchServiceCode(this.name)" data-target="#serviceModal" data-toggle="modal"><i class="fa fa-search"></i></button></span></div></td>'
 
@@ -112,6 +137,76 @@ function populate(element_id)
 			$('#discount'+element_id.substr(8)).val('0.00').change();
 			$('#unit_cost'+element_id.substr(8)).val(PutComma(data.datas['STANDARD_COST'])).change();
 			document.getElementById('quantity'+element_id.substr(8)).readOnly = false;
+			event.preventDefault();
+			
+		}
+
+	});
+}
+
+
+
+function populate3(element_id)
+{   
+	var item = $('#'+element_id).val();
+
+
+	var condition = "";
+
+    
+    
+	// for(var i=0; i<arr.length;i++){
+	//    for(var j=i+1;j<arr.length;j++){
+	//       if(arr[i]==arr[j]){
+	//           alert("Already Exist"); 
+	//           $('#'+element_id).val('');
+	//           $('#'+element_id).focus();
+	//           return false;;
+	//       }
+	//    }
+	// }
+	
+	$.ajax({
+
+		type: "GET",
+		url : "{{ route('populate.item') }}",
+		cache: false,
+		data : {item_code:item},
+		success : function(data)
+		{
+
+			// $(".item-code").each(function () {
+
+		 //        var selector = new Array();
+		 //        selector.push($(this).val());
+		 //        for(i = 0 ; i < selector.length; i++){
+
+		 //          if(selector[i] == item){
+		 //            condition = "F";
+		 //          }
+
+		 //        }
+
+		 //    })
+
+		 //    if(condition == "F"){
+		 //      alert('This item already exist on the list.')
+		 //      return false;
+		 //    }
+			if (data.datas == null) {
+				alert('Item Not Found on the database');
+				$('#'+element_id).val('');
+				$('#'+element_id).focus();
+				return false;
+			}
+			$('#item_desc'+element_id.substr(9)).val(data.datas['ITEM_DESC']).change();
+			$('#get_quant'+element_id.substr(9)).val(data.datas['QUANTITY']).change();
+			$('#quantity'+element_id.substr(9)).attr("max",data.datas['QUANTITY']);
+			$('#discount'+element_id.substr(9)).val('0.00').change();
+			$('#unit_cost'+element_id.substr(9)).val(PutComma(data.datas['STANDARD_COST'])).change();
+			document.getElementById('quantity'+element_id.substr(9)).readOnly = false;
+			event.preventDefault();
+			$('#addRow').click();
 		}
 
 	});

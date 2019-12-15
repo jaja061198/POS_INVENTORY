@@ -42,4 +42,19 @@ Route::get('pos/repots/worst-selling','pos\InvoiceReportController@indexWorst')-
 
 Route::post('pos/repots/worst-selling','pos\InvoiceReportController@generateWorst')->name('post.index.worst.selling');
 
+Route::get('pos/repots/daily-sales','pos\SalesReportController@indexDaily')->name('index.daily.sales');
+
+Route::post('pos/repots/daily-sales','pos\SalesReportController@generateDailySales')->name('post.daily.sales');
+
+Route::get('pos/repots/weekly-sales','pos\SalesReportController@indexWeekly')->name('index.weekly.sales');
+
+Route::post('pos/repots/weekly-sales','pos\SalesReportController@generateWeeklySales')->name('post.weekly.sales');
+
+Route::get('pos/repots/monthly-sales','pos\SalesReportController@indexMonthly')->name('index.monthly.sales');
+
+Route::post('pos/repots/monthly-sales','pos\SalesReportController@generateMonthlySales')->name('post.monthly.sales');
+
+
+
+
 });

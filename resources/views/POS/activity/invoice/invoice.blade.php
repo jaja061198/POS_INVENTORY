@@ -83,7 +83,7 @@
 	          		<table class="table table-bordered" id="tbl_receive">
 						<tr>
 							<td>Customer</td>
-							<td><input type="text" class="form-control" placeholder="Customer" name="customer" required></td>
+							<td><input type="text" class="form-control required" placeholder="Customer" name="customer" required></td>
 						</tr>
 
 						<tr>
@@ -128,7 +128,7 @@
 
 								<a class="btn btn-danger" id="clear" data-toggle="tooltip" data-placement="top" title="Clear" href="{{ route('invoice.index') }}"><i class="fa fa-trash"></i></a>
 
-								<button type="submit" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-save"></i></button>
+								<button type="button" id="submitbtm" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-save"></i></button>
 								
 							</td>
 						</tr>

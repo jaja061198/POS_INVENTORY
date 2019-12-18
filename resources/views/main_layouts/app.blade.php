@@ -10,8 +10,7 @@
 <meta name="author" content="">
 
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" >
-<link href="{!! asset('css/bootstrap.css') !!}" rel="stylesheet">
-{{-- <link href="{!! asset('bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.css') !!}" rel="stylesheet"> --}}
+<link href="{!! asset('css/main.css') !!}" rel="stylesheet">
 <link href="{!! asset('css/sb-admin.css') !!}" rel="stylesheet">
 <link href="{!! asset('css/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{!! asset('css/myStyle.css') !!}"/>

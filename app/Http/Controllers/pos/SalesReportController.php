@@ -49,7 +49,7 @@ class SalesReportController extends Controller
     public function generateDailySales(Request $request)
     {
         return view('POS.pos.reports.daily_report_result')
-        ->with('date_sort',$request->input('month'));
+        ->with('date_sort',$request->input('date_sort'));
     }
 
     public function generateWeeklySales(Request $request)
@@ -116,6 +116,7 @@ class SalesReportController extends Controller
 
     public static function retrieveDailyData($date,  $skip, $take)
     {
+
         $retrieve = InvoiceDetailsModel::where('INVOICE_DATE','=',$date)->skip($skip)->take($take)->orderBy('INVOICE_NO','ASC')->get();
 
         $data = [];

@@ -7,6 +7,7 @@ use App\Models\app_manager\WindowAccess as AccessModel;
 use App\Models\pos\InvoiceHeader as InvoiceHeaderModel;
 use App\Models\masterfile\Item as ItemModel;
 use App\Models\inventory\OrderHeader as OrderHeaderModel;
+use App\Models\app_manager\AuditTrail as AuditTrailModel;
 use Carbon\Carbon;
 use DB;
 
@@ -207,6 +208,18 @@ class Helper
     public static function getIteminfo($item_code)
     {
         return ItemModel::where('ITEM_CODE','=',$item_code)->first();
+    }
+
+    public static function putTrail($user_id, $window, $action_type, $action)
+    {
+        $trail = [
+            'user_id' => $user_id,
+            'window' => $window,
+            'action_type' => $action_type,
+            'action' => $action
+        ];
+
+        AuditTrailModel::insert($trail);
     }
     
 }

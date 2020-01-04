@@ -8,6 +8,7 @@ use Auth;
 use Session;
 use Response;
 use Carbon;
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -184,6 +185,16 @@ trait ReceivingTraits
 				$this->updateQuantity($request->input('get_code')[$key], $request->input('quantity')[$key]);
 				//Update The quantity in mastefile
 			}
+
+
+
+			$window = 'RECEIVING';
+
+			$action_type = 'REC';
+
+			$action = 'Received item '.$request->input('rr_code');
+
+			Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
 			Session::flash('success','Transaction Success');
 

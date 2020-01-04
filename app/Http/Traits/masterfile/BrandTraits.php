@@ -11,6 +11,7 @@ use Response;
 use Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Helpers\Helper;
 
 use App\Models\masterfile\Brand as BrandModel;
 
@@ -52,6 +53,14 @@ trait BrandTraits
 
 		BrandModel::insert($details);
 
+		$window = 'BRAND';
+
+		$action_type = 'ADD';
+
+		$action = 'Added a brand '.$request->input('add_brand_code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
 		Session::flash('success','Insert Success');
 
 		return bacK();
@@ -66,6 +75,14 @@ trait BrandTraits
 
 		BrandModel::where('BRAND_CODE','=',$request->input('get_code'))->update($details);
 
+		$window = 'BRAND';
+
+		$action_type = 'ED';
+
+		$action = 'Edited Brand '.$request->input('edit_brand_code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
 		Session::flash('success','Insert Success');
 
 		return bacK();
@@ -75,6 +92,14 @@ trait BrandTraits
 	{
 		
 		BrandModel::where('BRAND_CODE','=',$request->input('code'))->delete();
+
+		$window = 'BRAND';
+
+		$action_type = 'DEL';
+
+		$action = 'Deleted Brand '.$request->input('code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
 		Session::flash('success','Deletion Success');
 

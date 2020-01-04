@@ -4,7 +4,7 @@
 
 <div id="page-wrapper">
 <div class="row" style="margin-top:-12px;">
-	<h5 class="page-header" style="color:blue;"><i class="fa fa-plane"></i> Receiving</h5>
+	<h5 class="page-header" style="color:blue;"><i class="fa fa-plane"></i> Receiving Item</h5>
 </div>
 
 @include('main_layouts.messages')

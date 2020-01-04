@@ -98,6 +98,15 @@ trait ItemTraits
 
 		ItemModel::insert($details);
 
+
+		$window = 'ITEM';
+
+		$action_type = 'ADD';
+
+		$action = 'Added a new item '.$request->input('add_item_code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
 		Session::flash('success','Insert Success');
 
 		return bacK();
@@ -155,6 +164,14 @@ trait ItemTraits
 		
 		ItemModel::where('ITEM_CODE','=',$request->input('get_code'))->update($details);
 
+		$window = 'ITEM';
+
+		$action_type = 'ED';
+
+		$action = 'Edited item '.$request->input('edit_service_code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
 		Session::flash('success','Insert Success');
 
 		return bacK();
@@ -164,6 +181,14 @@ trait ItemTraits
 	{
 		
 		ItemModel::where('ITEM_CODE','=',$request->input('code'))->delete();
+
+		$window = 'ITEM';
+
+		$action_type = 'DEL';
+
+		$action = 'Deleted ITEM '.$request->input('code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
 		Session::flash('success','Deletion Success');
 

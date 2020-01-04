@@ -19,13 +19,13 @@
       {{ Form::open(array('route' => 'update.welcome.ecom.index', 'files' => true)) }}
       <div class="form-group">
             <label for="recipient-name" class="col-form-label"><i style="color:red;">*</i> Welcome greeting</label> <small style="color:red;visibility: hidden;" id="add_code_msg"><i></i></small>
-            <textarea name="welcome" id="" cols="5" rows="2" class="form-control" style="resize:none;" required>{{ $items['welcome_greet'] }}</textarea>
+            <textarea name="welcome" id="" cols="5" rows="2" class="form-control ckeditor" style="resize:none;" required>{{ $items['welcome_greet'] }}</textarea>
             <input type="hidden" name="get_id" value="{{ $items['id'] }}">
       </div>
 
       <div class="form-group">
             <label for="recipient-name" class="col-form-label"><i style="color:red;">*</i> Welcome Message</label> <small style="color:red;visibility: hidden;" id="add_code_msg"><i></i></small>
-            <textarea name="welcome_msg" id="" cols="5" rows="4" class="form-control" style="resize:none;" required>{{ $items['welcome_msg'] }}</textarea>
+            <textarea name="welcome_msg" id="" cols="5" rows="4" class="form-control ckeditor" style="resize:none;" required>{{ $items['welcome_msg'] }}</textarea>
       </div>
       
       <div class="form-group">

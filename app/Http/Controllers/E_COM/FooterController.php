@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\E_COM;
 
-
+use Auth;
+use App\Helpers\Helper;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -84,6 +85,14 @@ class FooterController extends Controller
             'instagram' => $request->input('instagram'),
             'email' => $request->input('email'),
         ];
+
+        $window = 'FOOTER';
+
+        $action_type = 'ED';
+
+        $action = 'Updated Footer Values';
+
+        Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
         FooterModel::where('id','=',$request->input('get_id'))->update($details);
 

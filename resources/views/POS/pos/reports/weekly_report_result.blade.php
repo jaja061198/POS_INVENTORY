@@ -128,7 +128,7 @@ $skip = 0;
 		
 					@php
 						$data_list = SalesReportController::retrieveWeeklyData($week_start,$week_end, $skip, 50);
-					@endphp}
+					@endphp
 
 					@foreach($data_list as $key => $value)
 

@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" >
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 <link href="{!! asset('css/main.css') !!}" rel="stylesheet">
 <link href="{!! asset('css/sb-admin.css') !!}" rel="stylesheet">
 <link href="{!! asset('css/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">

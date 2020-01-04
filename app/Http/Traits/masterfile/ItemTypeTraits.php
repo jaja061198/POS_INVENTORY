@@ -52,6 +52,14 @@ trait ItemTypeTraits
 
 		ItemTypeModel::insert($details);
 
+		$window = 'ITEM TYPE';
+
+		$action_type = 'ADD';
+
+		$action = 'Added a new item type '.$request->input('add_item_type_code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
 		Session::flash('success','Insert Success');
 
 		return bacK();
@@ -66,6 +74,14 @@ trait ItemTypeTraits
 
 		ItemTypeModel::where('ITEM_TYPE_CODE','=',$request->input('get_code'))->update($details);
 
+		$window = 'ITEM TYPE';
+
+		$action_type = 'ED';
+
+		$action = 'Edited Item Type '.$request->input('edit_item_type_code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
 		Session::flash('success','Insert Success');
 
 		return bacK();
@@ -75,6 +91,14 @@ trait ItemTypeTraits
 	{
 		
 		ItemTypeModel::where('ITEM_TYPE_CODE','=',$request->input('code'))->delete();
+
+		$window = 'ITEM TYPE';
+
+		$action_type = 'DEL';
+
+		$action = 'Deleted Item Type '.$request->input('code');
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
 		Session::flash('success','Deletion Success');
 

@@ -76,7 +76,7 @@
                     
                     
                     
-                    <li>
+                    <li @if(Request::route()->getName() == 'home') class="active" @endif>
                         <a href="{{ route('home') }}">
                         <span class="fa fa-bar-chart" style="font-size: 18px;"></span> Dashboard</a>
                     </li>
@@ -116,11 +116,13 @@
                                                 @foreach(Navigation::getCategory($element['NAV_ID']) as $category_key => $category)
 
 
+                                                {{-- {{ Navigation::getCategory($element['NAV_ID'])->pluck('ROUTE') }} --}}
+
                                                     @if ($category['CHILD'] == 0)
 
                                                             @if(Helper::getUserAccess($category['NAV_ID'])['VIEW'] == 1)
 
-                                                                <li><a href="{{ route($category['ROUTE']) }}">{{ $category['NAV_DESCRIPTION'] }}</a></li>
+                                                                <li @if(Request::route()->getName() == $category['ROUTE']) class="active" @endif><a href="{{ route($category['ROUTE']) }}">{{ $category['NAV_DESCRIPTION'] }}</a></li>
 
                                                             @endif
 

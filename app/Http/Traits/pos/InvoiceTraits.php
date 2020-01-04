@@ -150,7 +150,17 @@ trait InvoiceTraits
 
 		}
 
+
+		$window = 'INVOICE';
+
+		$action_type = 'INV';
+
+		$action = 'Invoiced item '.$code_holder;
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
 		Session::flash('success','Transaction '.$code_holder.' success');
+		
 		return back();
 
 	}

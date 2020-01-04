@@ -27,6 +27,23 @@ Route::group(['middleware' => 'auth'], function ()
 
 	Route::post('/e_com/settings/footer/update','E_COM\FooterController@update')->name('update.footer.index');
 
+	//About Us 
+	
+	Route::get('/e_com/settings/about-us','E_COM\AboutController@index')->name('welcome.about.index');
+
+	Route::post('/e_com/settings/about-us/update','E_COM\AboutController@update')->name('update.about.index');
+
+	//Terms 
+	
+	Route::get('/e_com/settings/terms','E_COM\TermsController@index')->name('welcome.terms.index');
+
+	Route::post('/e_com/settings/terms/update','E_COM\TermsController@update')->name('update.terms.index');
+
+	//Payment Guide 
+	
+	Route::get('/e_com/settings/payment','E_COM\PaymentController@index')->name('welcome.payment.index');
+
+	Route::post('/e_com/settings/payment/update','E_COM\PaymentController@update')->name('update.payment.index');
 
 	//new Orders
 

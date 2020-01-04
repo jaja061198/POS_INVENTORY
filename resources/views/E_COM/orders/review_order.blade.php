@@ -86,7 +86,9 @@ use App\Helpers\Helper;
 
                         <tr>
                             <td colspan="100%" align="right">
-                              <button type="submit" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row">Approve <i class="fa fa-check"></i></button>
+
+                              <a href="" class="btn btn-success">Approve <i class="fa fa-check"></i></a>
+                              {{-- <button type="submit" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row">Approve <i class="fa fa-check"></i></button> --}}
 
                               <button type="submit" class="btn btn-danger" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row">Reject <i class="fa fa-times"></i></button>
                             </td>

@@ -66,5 +66,12 @@ Route::group(['middleware' => 'auth'], function ()
 	Route::get('ecommercesetting/slider','app_manager\SliderController@index')->name('index.slider');
 
 	Route::get('ecommercesetting/slider/get','app_manager\SliderController@getSlider')->name('get.slider');
+
+
+	//Audit Trail
+
+	Route::get('applicationsetting/audittrail','app_manager\AuditTrailController@index')->name('index.trail');
+
+	Route::post('applicationsetting/audittrail','app_manager\AuditTrailController@trailResult')->name('post.trail');
 	
 });

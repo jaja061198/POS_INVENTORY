@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\E_COM;
 
-
+use Auth;
 use Session;
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -107,6 +108,14 @@ class WelcomeController extends Controller
         }
 
         WelcomePageModel::where('id','=',$request->input('get_id'))->update($details);
+
+        $window = 'Welcome Page';
+
+        $action_type = 'ED';
+
+        $action = 'Updated Welcome Page';
+
+        Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
         Session::flash('success','Upadate Success');
 

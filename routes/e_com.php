@@ -51,4 +51,42 @@ Route::group(['middleware' => 'auth'], function ()
 
 	Route::get('/ordersonline/neworders/review/{id}','E_COM\OrderController@show')->name('new.orders.review');
 
+	Route::get('/ordersonline/neworders/review/approvereject/{id}/{action}','E_COM\OrderController@approvereject')->name('approve.reject.order');
+
+	//Order For Payments
+
+	Route::get('/ordersonline/forpayments','E_COM\PaymentController@forPayment')->name('payment.list.index');
+
+	Route::get('/ordersonline/forpaymentsreview','E_COM\PaymentController@forPaymentReview')->name('payment.review.index');
+
+	Route::get('/ordersonline/forpaymentsreview/download/{id}','E_COM\PaymentController@downloadPayment')->name('payment.download');
+
+	Route::get('/ordersonline/forpayment/review/approvereject/{id}/{action}','E_COM\PaymentController@approvereject')->name('approve.reject.payment');
+
+	//For shipping
+
+	Route::get('/ordersonline/forshipping','E_COM\forshippingController@index')->name('shipping.list.index');
+
+	Route::get('/ordersonline/forpayment/review/changestatus/{id}/{action}','E_COM\forshippingController@changestatus')->name('change.status.order');
+
+	Route::get('/ordersonline/completed','E_COM\forshippingController@complete')->name('order.complete');
+
+	Route::get('/ordersonline/cancelled','E_COM\forshippingController@cancel')->name('order.cancel');
+
+	//Shipping Fee
+
+	Route::get('/e_com/shipping','E_COM\ShippingFeeController@index')->name('index.shipping');
+
+	Route::get('/e_com/shipping/validatecode','E_COM\ShippingFeeController@validator')->name('validate.shipping.code');
+
+	Route::get('/e_com/shipping/validatecode/edit','E_COM\ShippingFeeController@validatorEdit')->name('validate.shipping.code.edit');
+
+	Route::get('/e_com/shipping/edit','E_COM\ShippingFeeController@edit')->name('edit.shipping');
+
+	Route::post('/e_com/shipping/add','E_COM\ShippingFeeController@store')->name('add.shipping');
+
+	Route::post('/e_com/shipping/edit','E_COM\ShippingFeeController@update')->name('update.shipping');
+
+	Route::post('/e_com/shipping/delete','E_COM\ShippingFeeController@destroy')->name('delete.shipping');
+
 });

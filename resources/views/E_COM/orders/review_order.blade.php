@@ -6,7 +6,40 @@ use App\Helpers\Helper;
 @section('content')
 <div id="page-wrapper">
 <div class="row" style="margin-top:-12px;">
-  <h5 class="page-header" style="color:blue;"><i class="fa fa-cogs"></i> Order Review {{ $headers['order_no'] }}</h5>
+  <h5 class="page-header" style="color:blue;"><i class="fa fa-cogs"></i> Order Review {{ $headers['order_no'] }} <small style="text-transform: uppercase;">(
+    @if($headers->status == 0)
+        <a href="#" style="color:red;">PENDING</a>
+    @endif
+
+    @if($headers->status == 1)
+        <a href="#" style="color:red;">Cancelled</a>
+    @endif
+
+    @if($headers->status == 2)
+        <a href="#" style="color:red;">Waiting for Payment</a>
+    @endif
+
+    @if($headers->status == 3)
+        <a href="#" style="color:red;">For Payment Review</a>
+    @endif
+
+    @if($headers->status == 4)
+        <a href="#" style="color:red;">For Store Pick up</a>
+    @endif
+
+    @if($headers->status == 5)
+        <a href="#" style="color:red;">To Receive</a>
+    @endif
+
+    @if($headers->status == 6)
+        <a href="#" style="color:red;">To Ship</a>
+    @endif
+
+    @if($headers->status == 7)
+        <a href="#" style="color:red;">Completed</a>
+    @endif
+  )</small>
+  </h5>
 </div>
 
 @include('main_layouts.messages')  
@@ -53,9 +86,7 @@ use App\Helpers\Helper;
                   <div class="panel panel-default" style=" font-size: 12px;">
 
                     <table class="table table-bordered" id="tbl_receive">
-                      <tr>
-                        <td colspan="100%" style="font-size:11px;" align="right"><i style="font-weight: bold;">Transaction Details</i></td>
-                      </tr>
+                      
 
                       <tr style="text-align: center;text-transform: uppercase;font-weight: bold;">
                         <td style="width: 390px;">Item Code</td>
@@ -87,10 +118,14 @@ use App\Helpers\Helper;
                         <tr>
                             <td colspan="100%" align="right">
 
-                              <a href="" class="btn btn-success">Approve <i class="fa fa-check"></i></a>
-                              {{-- <button type="submit" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row">Approve <i class="fa fa-check"></i></button> --}}
+                              @if($headers['status'] == '0')
+                              <a onclick="approveOrder()" href="{{ route('approve.reject.order',['id' => str_replace("#","w",$headers['order_no']),'action' => 'approve']) }}" class="btn btn-success">Approve <i class="fa fa-check"></i></a>
+                              @endif
 
-                              <button type="submit" class="btn btn-danger" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row">Reject <i class="fa fa-times"></i></button>
+                              @if($headers['status'] == '0' || $headers['status'] == '2')
+                              {{-- <button type="submit" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row">Approve <i class="fa fa-check"></i></button> --}}
+                              <a onclick="cancelOrder()" href="{{ route('approve.reject.order',['id' => str_replace("#","w",$headers['order_no']),'action' => 'reject']) }}" class="btn btn-danger">Cancel Order <i class="fa fa-times"></i></a>
+                              @endif
                             </td>
                           </tr>
 
@@ -99,7 +134,156 @@ use App\Helpers\Helper;
                   </div>
 
                 </div>
+
+
+                <div class="col-lg-12">
+                    <table class="table table-bordered" >
+                      <tr>
+                        <td colspan="100%" style="font-size:11px;" align="right"><i style="font-weight: bold;">Order Logs</i></td>
+                      </tr>
+                        
+                        <tr style="font-weight: bold;text-transform: uppercase;">
+                          <td>Action</td>
+                          <td>Date Performed</td>
+                        </tr>
+                        
+                        <tbody>
+                          
+                          @foreach($logs as $key => $value)
+                            <tr>
+                                <td>{{ $value['action'] }}</td>
+
+                                <td>{{ $value['date_performed'] }}</td>
+                            </tr>
+                          @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                @if($headers['status'] == '3' || $headers['status'] == '6')
+                <div class="col-lg-12">
+                    <table class="table table-bordered" >
+                      <tr>
+                        <td colspan="100%" style="font-size:11px;" align="right"><i style="font-weight: bold;">Payment Information</i></td>
+                      </tr>
+                        
+                        <tr style="font-weight: bold;text-transform: uppercase;">
+                          <td>Details</td>
+                          <td>Action</td>
+                        </tr>
+                        
+                        <tbody>
+                            <tr>
+                              <td>
+                                {{ $headers['image'] }}
+                              </td>
+
+                              <td style="width: 30%">
+                                <a target="_blank" href="{{ route('payment.download',['id' => str_replace("#","w",$headers['order_no'])]) }}" class="btn btn-primary">Review <i class="fa fa-search"></i></a>
+
+                                @if($headers['status'] == '3')
+
+                                <a onclick="approvePayment()" href="{{ route('approve.reject.payment',['id' => str_replace("#","w",$headers['order_no']),'action' => 'approve']) }}" class="btn btn-success">Approve & Invoice <i class="fa fa-check"></i></a>
+
+                                <a onclick="cancelPayment()" href="{{ route('approve.reject.payment',['id' => str_replace("#","w",$headers['order_no']),'action' => 'reject']) }}" class="btn btn-danger">Reject <i class="fa fa-times"></i></a>
+
+                                @endif
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @endif
+
+
+                @if( $headers['status'] == '6')
+                <div class="col-lg-12">
+                    <table class="table table-bordered" >
+                      <tr>
+                        <td colspan="100%" style="font-size:11px;" align="right"><i style="font-weight: bold;">Mark as for receiving</i></td>
+                      </tr>
+                        
+                        <tr style="font-weight: bold;text-transform: uppercase;">
+                          <td></td>
+                          <td>Action</td>
+                        </tr>
+                        
+                        <tbody>
+                            <tr>
+                              <td>
+                                Mark as for receiving.
+                              </td>
+
+                              <td style="width: 30%">
+                                <a target="_blank" href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '5']) }}" class="btn btn-warning" onclick="approveShip()">Mark as for receiving <i class="fa fa-truck"></i></a>
+
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @endif
+
+                 @if( $headers['status'] == '5')
+                <div class="col-lg-12">
+                    <table class="table table-bordered" >
+                      <tr>
+                        <td colspan="100%" style="font-size:11px;" align="right"><i style="font-weight: bold;">Mark as Complete</i></td>
+                      </tr>
+                        
+                        <tr style="font-weight: bold;text-transform: uppercase;">
+                          <td></td>
+                          <td>Action</td>
+                        </tr>
+                        
+                        <tbody>
+                            <tr>
+                              <td>
+                                Mark as Complete.
+                              </td>
+
+                              <td style="width: 30%">
+                                <a target="_blank" href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '7']) }}" class="btn btn-warning" onclick="approveShip()">Mark as Complete <i class="fa fa-truck"></i></a>
+
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @endif
+
+
+                @if( $headers['status'] == '4')
+                <div class="col-lg-12">
+                    <table class="table table-bordered" >
+                      <tr>
+                        <td colspan="100%" style="font-size:11px;" align="right"><i style="font-weight: bold;">Mark as Picked up</i></td>
+                      </tr>
+                        
+                        <tr style="font-weight: bold;text-transform: uppercase;">
+                          <td></td>
+                          <td>Action</td>
+                        </tr>
+                        
+                        <tbody>
+                            <tr>
+                              <td>
+                                Mark as shipped.
+                              </td>
+
+                              <td style="width: 30%">
+                                <a target="_blank"  href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '7']) }}" class="btn btn-warning" onclick="approveShip()">Mark as Picked Up and complete <i class="fa fa-truck"></i></a>
+
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @endif
+
+
               </div>
+              
 
 
 
@@ -110,5 +294,60 @@ use App\Helpers\Helper;
 
   </div>
 </div>
+
+
+<script>
+
+function approveOrder() {
+
+  var r = confirm("Are you sure you want to approve this order?");
+  if (r == true) {
+
+  } else {
+    event.preventDefault();
+  }
+}
+
+function cancelOrder() {
+  var txt;
+  var r = confirm("Are you sure you want to reject this order?");
+  if (r == true) {
+    txt = "You pressed OK!";
+  } else {
+    event.preventDefault();
+  }
+}
+
+function approvePayment() {
+
+  var r = confirm("Are you sure you want to approve this payment?");
+  if (r == true) {
+
+  } else {
+    event.preventDefault();
+  }
+}
+
+function cancelPayment() {
+  var txt;
+  var r = confirm("Are you sure you want to reject this payment?");
+  if (r == true) {
+    txt = "You pressed OK!";
+  } else {
+    event.preventDefault();
+  }
+}
+
+function approveShip() {
+
+  var r = confirm("Are you sure you want to mark this as for receiving?");
+  if (r == true) {
+
+  } else {
+    event.preventDefault();
+  }
+}
+
+</script>
 
 @endsection

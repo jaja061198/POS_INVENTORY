@@ -104,6 +104,7 @@ trait UserTraits
 				if($value->user_level == 0) { $level = 'Super Admin' ; } 
 				if ($value->user_level == 1){ $level = 'Admin'; }
 				if ($value->user_level == 3){ $level = 'Ordinary'; }
+				if ($value->user_level == 4){ $level = 'Customer'; }
 				$code = Crypt::encrypt($value->username);
 				$nestedData['username'] = $value->username;
 				$nestedData['name'] = $value->name;
@@ -158,13 +159,15 @@ trait UserTraits
 		if(Auth::user()->user_level == 1)
 		{
 			return $posts = UserModel::where('user_level','!=',0)
+					->where('user_level','!=',4)
 					->limit($LIMIT)
 					->orderBy($ORDER,$DIR)
 					->get();
 		}
 		else
 		{
-			return $posts = UserModel::limit($LIMIT)
+			return $posts = UserModel::where('user_level','!=',4)
+					->limit($LIMIT)
 					->orderBy($ORDER,$DIR)
 					->get();
 		}
@@ -176,17 +179,22 @@ trait UserTraits
 	{
 		if(Auth::user()->user_level == 1)
 		{
-			return $posts = UserModel::where('user_level','!=',0)
-						->where('username','like',"%{$SEARCH}%")
-						->orWhere('name','like',"%{$SEARCH}%")
-						->limit($LIMIT)
-						->orderBy($ORDER,$DIR)
-						->get();
+			return $posts = UserModel::where('user_level','!=',4)
+							->where('user_level','!=',0)
+							->where('username','like',"%{$SEARCH}%")
+							->orWhere('user_level','!=',4)
+							->where('user_level','!=',0)
+							->Where('name','like',"%{$SEARCH}%")
+							->limit($LIMIT)
+							->orderBy($ORDER,$DIR)
+							->get();
 		}
 		else
 		{
-			return $posts = UserModel::where('username','like',"%{$SEARCH}%")
-						->orWhere('name','like',"%{$SEARCH}%")
+			return $posts = UserModel::where('user_level','!=',4)
+						->where('username','like',"%{$SEARCH}%")
+						->orWhere('user_level','!=',4)
+						->Where('name','like',"%{$SEARCH}%")
 						->limit($LIMIT)
 						->orderBy($ORDER,$DIR)
 						->get();

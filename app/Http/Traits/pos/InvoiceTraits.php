@@ -56,7 +56,6 @@ trait InvoiceTraits
 	public function postInvoice(Request $request)
 	{
 
-
 		// return $request->all();
 
 		if(Helper::removeCommas($request->input('pay_amount')) < Helper::removeCommas($request->input('total_amount2')))
@@ -85,6 +84,7 @@ trait InvoiceTraits
 			'GRAND_TOTAL2' => Helper::removeCommas($request->input('total_amount2')),
 			'CASH_AMOUNT' => Helper::removeCommas($request->input('pay_amount')),
 			'CHANGE' => Helper::removeCommas($request->input('change')),
+			'INVOICE_DATE' => Carbon\Carbon::now(),
 		];
 
 		InvoiceHeaderModel::insert($header);
@@ -106,6 +106,7 @@ trait InvoiceTraits
 					'DISCOUNT' => Helper::removeCommas($request->input('discount')[$key]),
 					'QUANTITY' => Helper::removeCommas($request->input('quantity')[$key]),
 					'TOTAL_PRICE' => Helper::removeCommas($request->input('total_cost')[$key]),
+					'INVOICE_DATE' => Carbon\Carbon::now(),
 				];
 
 				// var_dump($request->input('get_quantity')[$key] - $request->input('quantity')[$key]);
@@ -137,6 +138,7 @@ trait InvoiceTraits
 					'DISCOUNT' => 0,
 					'QUANTITY' => 1,
 					'TOTAL_PRICE' => Helper::removeCommas($request->input('service_cost')[$key]),
+					'INVOICE_DATE' => Carbon\Carbon::now(),
 				];
 
 				// var_dump($request->input('get_quantity')[$key] - $request->input('quantity')[$key]);

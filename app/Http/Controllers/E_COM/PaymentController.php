@@ -159,7 +159,7 @@ class PaymentController extends Controller
 
                 # code...
                 # With Shipping
-                // OrderDetailModel::where('order_no','=',str_replace('w', '#', $id))->update(['status' => '4']); #Change status to to ship
+                OrderHeaderModel::where('order_no','=',str_replace('w', '#', $id))->update(['status' => '4']); #Change status to to ship
 
                 #generate invoice
 
@@ -177,7 +177,7 @@ class PaymentController extends Controller
                     'CHANGE' => 0,
                 ];
 
-                // InvoiceHeaderModel::insert($header);
+                InvoiceHeaderModel::insert($header);
 
                 foreach (OrderDetailModel::where('order_id','=',str_replace('w', '#', $id))->get() as $key => $value) 
                 {
@@ -192,7 +192,9 @@ class PaymentController extends Controller
                         'TOTAL_PRICE' => $value['item_price'] * $value['quantity'],
                     ];
 
-                    // InvoiceDetailsModel::insert($details);
+                    InvoiceDetailsModel::insert($details);
+
+                    $this->updateQuantity($value['item_code'], $value['quantity']);
 
                 }
 
@@ -201,9 +203,10 @@ class PaymentController extends Controller
                     'action' => 'Payment has been accepted here is your invoice reference number '.$code_holder,
                 ];
 
-                // OrderLogModel::insert($order_log);
+                OrderLogModel::insert($order_log);
 
-                return $order_log;
+                Session::flash('success','Order has been successfully invoiced');
+                return redirect()->route('payment.review.index');
 
             }
         }
@@ -211,6 +214,17 @@ class PaymentController extends Controller
         if ($action == 'reject') 
         {
             # code...
+
+            OrderHeaderModel::where('order_no','=',str_replace('w', '#', $id))->update(['status' => '2']); #Change status to to ship
+
+            $order_log = [
+                'order_no' => str_replace('w', '#', $id),
+                'action' => 'Payment has been rejected please contact us for further details',
+            ];
+
+            OrderLogModel::insert($order_log);
+
+            return back();
         }
     }
 
@@ -244,5 +258,14 @@ class PaymentController extends Controller
             $generated_code = 'INV'.$padded_code.$data_count;
 
             return $generated_code;
+    }
+
+    public function updateQuantity($ITEM_CODE , $QUANTITY)
+    {
+        $get_item = ItemModel::where('ITEM_CODE','=',$ITEM_CODE)->select('QUANTITY')->first();
+
+        $new_quantity = $get_item->QUANTITY - $QUANTITY;
+
+        ItemModel::where('ITEM_CODE','=',$ITEM_CODE)->update(['QUANTITY' => $new_quantity]);
     }
 }

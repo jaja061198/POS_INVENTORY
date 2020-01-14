@@ -158,4 +158,24 @@ trait InvoiceReportTraits
 
 		return $item;
 	}
+
+	//Invoide Detail Printing
+	
+	public function invoiceDetailFunction($id)
+	{
+		return view('POS.pos.reports.invoice_detail')
+		->with('header',InvoiceHeaderModel::where('INVOICE_NO','=',$id)->first());
+	}
+
+	public static function countDetails($id)
+	{
+		return InvoiceDetailsModel::where('INVOICE_NO','=',$id)->count();
+	}
+
+	public static function getDetails($id, $skip, $take)
+	{
+		#$item->skip($skip)->take($take)->get();
+		
+		return InvoiceDetailsModel::where('INVOICE_NO','=',$id)->skip($skip)->take($take)->orderBy('TYPE','ASC')->get();
+	}
 }

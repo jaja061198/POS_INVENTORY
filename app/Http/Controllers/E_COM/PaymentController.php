@@ -118,6 +118,7 @@ class PaymentController extends Controller
                     'GRAND_TOTAL2' => $total_items_price + $get_or_header->shipping_price,
                     'CASH_AMOUNT' => $total_items_price + $get_or_header->shipping_price,
                     'CHANGE' => 0,
+                    'INVOICE_DATE' => Carbon\Carbon::now(),
                 ];
 
                 InvoiceHeaderModel::insert($header);
@@ -133,6 +134,7 @@ class PaymentController extends Controller
                         'DISCOUNT' => 0,
                         'QUANTITY' => $value['quantity'],
                         'TOTAL_PRICE' => $value['item_price'] * $value['quantity'],
+                        'INVOICE_DATE' => Carbon\Carbon::now(),
                     ];
 
                     InvoiceDetailsModel::insert($details);
@@ -176,6 +178,7 @@ class PaymentController extends Controller
                     'GRAND_TOTAL2' => $total_items_price,
                     'CASH_AMOUNT' => $total_items_price,
                     'CHANGE' => 0,
+                    'INVOICE_DATE' => Carbon\Carbon::now(),
                 ];
 
                 InvoiceHeaderModel::insert($header);
@@ -191,6 +194,7 @@ class PaymentController extends Controller
                         'DISCOUNT' => 0,
                         'QUANTITY' => $value['quantity'],
                         'TOTAL_PRICE' => $value['item_price'] * $value['quantity'],
+                        'INVOICE_DATE' => Carbon\Carbon::now(),
                     ];
 
                     InvoiceDetailsModel::insert($details);

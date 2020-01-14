@@ -8,6 +8,7 @@ use App\Models\pos\InvoiceHeader as InvoiceHeaderModel;
 use App\Models\masterfile\Item as ItemModel;
 use App\Models\inventory\OrderHeader as OrderHeaderModel;
 use App\Models\app_manager\AuditTrail as AuditTrailModel;
+use App\Models\masterfile\Service as ServiceModel;
 use Carbon\Carbon;
 use DB;
 
@@ -208,6 +209,11 @@ class Helper
     public static function getIteminfo($item_code)
     {
         return ItemModel::where('ITEM_CODE','=',$item_code)->first();
+    }
+
+    public static function getServiceInfo($service_code)
+    {
+        return ServiceModel::where('SERVICE_CODE','=',$service_code)->first();
     }
 
     public static function putTrail($user_id, $window, $action_type, $action)

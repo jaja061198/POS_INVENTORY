@@ -34,6 +34,8 @@ Route::get('inventory/serverside/services' , 'pos\InvoiceController@populate')->
 
 //REPORTS
 
+Route::get('pos/repots/invoice-detail/{id}','pos\InvoiceReportController@invoiceDetail')->name('index.invoice.detail');
+
 Route::get('pos/repots/top-selling','pos\InvoiceReportController@index')->name('index.top.selling');
 
 Route::post('pos/repots/top-selling','pos\InvoiceReportController@generate')->name('post.index.top.selling');

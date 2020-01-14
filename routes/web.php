@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function ()
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/home/chart', 'HomeController@chart')->name('home.chart');
+
 Route::get('/user/list','userController@showusers')->name('view.users.list');
 
 });

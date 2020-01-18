@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\E_COM;
 
-
+use Auth;
+use App\Helpers\Helper;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -60,6 +61,14 @@ class OrderController extends Controller
                 'action' => 'Order has been approved for payment',
             ];
 
+            $window = 'New Orders';
+
+            $action_type = 'APV';
+
+            $action = 'Approved Order '.$or;
+
+            Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
             OrderLogModel::insert($order_log);
         }
 
@@ -72,6 +81,14 @@ class OrderController extends Controller
                 'order_no' => $or,
                 'action' => 'Order has been reject kindly contact us for details',
             ];
+
+            $window = 'New Orders';
+
+            $action_type = 'REJ';
+
+            $action = 'Rejected Order '.$or;
+
+            Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
             OrderLogModel::insert($order_log);
         }

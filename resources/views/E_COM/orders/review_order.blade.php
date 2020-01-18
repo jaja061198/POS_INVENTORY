@@ -215,7 +215,7 @@ use App\Helpers\Helper;
                               </td>
 
                               <td style="width: 30%">
-                                <a target="_blank" href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '5']) }}" class="btn btn-warning" onclick="approveShip()">Mark as for receiving <i class="fa fa-truck"></i></a>
+                                <a href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '5']) }}" class="btn btn-warning" onclick="approveShip()">Mark as for receiving <i class="fa fa-truck"></i></a>
 
                               </td>
                             </tr>
@@ -243,7 +243,7 @@ use App\Helpers\Helper;
                               </td>
 
                               <td style="width: 30%">
-                                <a target="_blank" href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '7']) }}" class="btn btn-warning" onclick="approveShip()">Mark as Complete <i class="fa fa-truck"></i></a>
+                                <a href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '7']) }}" class="btn btn-warning" onclick="approveShip()">Mark as Complete <i class="fa fa-truck"></i></a>
 
                               </td>
                             </tr>
@@ -272,7 +272,7 @@ use App\Helpers\Helper;
                               </td>
 
                               <td style="width: 30%">
-                                <a target="_blank"  href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '7']) }}" class="btn btn-warning" onclick="approveShip()">Mark as Picked Up and complete <i class="fa fa-truck"></i></a>
+                                <a href="{{ route('change.status.order',['id' => str_replace("#","w",$headers['order_no']), 'action' => '7']) }}" class="btn btn-warning" onclick="approveShip()">Mark as Picked Up and complete <i class="fa fa-truck"></i></a>
 
                               </td>
                             </tr>

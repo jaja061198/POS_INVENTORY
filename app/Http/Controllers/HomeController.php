@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon;
 use Response;
 use Illuminate\Http\Request;
 use App\Models\pos\InvoiceHeader as InvoiceHeaderModel;
@@ -46,7 +47,16 @@ class HomeController extends Controller
     {
         $months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
 
+        $days = cal_days_in_month(CAL_GREGORIAN, date("m"), date("y"));
+
         $current_month = date("M");
+
+        $get_days = [];
+
+        for ($i=1; $i <= $days ; $i++) { 
+            // $get_days[$i] = "$i";
+            array_push($get_days, $i);
+        }
 
         $relative_months = [];
 
@@ -68,13 +78,18 @@ class HomeController extends Controller
 
         $sales = [];
 
-        for($i = 0; $i < sizeof($months) ; $i++ )
+        for($i = 0; $i < sizeof($get_days) ; $i++ )
         {
-                $sales[$i] = InvoiceHeaderModel::whereYear('INVOICE_DATE',date('Y'))->whereMonth('INVOICE_DATE',$i + 1)->sum('GRAND_TOTAL2');            
+                $year = Carbon\Carbon::now()->year;
+                $month = Carbon\Carbon::now()->month;
+                $date_create = date_create($year."-".$month."-".$i);
+                $format_date = date_format($date_create,"Y-m-d");
+                // $sales[$i] = InvoiceHeaderModel::whereYear('INVOICE_DATE',date('Y'))->whereMonth('INVOICE_DATE',Carbon\Carbon::now()->month)->sum('GRAND_TOTAL2');
+                $sales[$i] = InvoiceHeaderModel::where('INVOICE_DATE','=',$format_date)->sum('GRAND_TOTAL2');            
             
         }
-        return response()->json(['months' => $months,'sales' => $sales]);
+
+        return response()->json(['months' => $get_days,'sales' => $sales]);
+
     }
-
-
 }

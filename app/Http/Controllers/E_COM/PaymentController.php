@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\E_COM;
 
+use Carbon;
 use DB;
 use Response;
 use Auth;
@@ -210,6 +211,14 @@ class PaymentController extends Controller
 
                 OrderLogModel::insert($order_log);
 
+                $window = 'For Payment Review';
+
+                $action_type = 'APV';
+
+                $action = 'Approved Payment for ORDER '.str_replace('w', '#', $id). 'Invoice ref '.$code_holder;
+
+                Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
                 Session::flash('success','Order has been successfully invoiced');
                 return redirect()->route('payment.review.index');
 
@@ -228,6 +237,14 @@ class PaymentController extends Controller
             ];
 
             OrderLogModel::insert($order_log);
+
+            $window = 'For Payment Review';
+
+                $action_type = 'APV';
+
+                $action = 'Rejected Payment for ORDER '.str_replace('w', '#', $id);
+
+                Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
             return back();
         }

@@ -163,7 +163,7 @@ trait InvoiceTraits
 
 		Session::flash('success','Transaction '.$code_holder.' success');
 		
-		return back();
+		return redirect()->route('index.invoice.detail',['id' => $code_holder]);
 
 	}
 

@@ -61,6 +61,14 @@ class ForShippingController extends Controller
                 'action' => 'Order has been shipped to your location',
             ];
 
+            $window = 'For Shipping';
+
+            $action_type = 'ED';
+
+            $action = 'Marked as shipped ORDER '.str_replace('w', '#', $id);
+
+            Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
             OrderLogModel::insert($order_log);
         }
 
@@ -70,6 +78,14 @@ class ForShippingController extends Controller
                 'order_no' => str_replace('w', '#', $id),
                 'action' => 'Order has been received and completed',
             ];
+
+            $window = 'For Shipping';
+
+            $action_type = 'ED';
+
+            $action = 'Marked as completed ORDER '.str_replace('w', '#', $id);
+
+            Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
             OrderLogModel::insert($order_log);
         }

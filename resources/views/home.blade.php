@@ -271,17 +271,22 @@
       </div>
 
       <br>
-      <div><h1 style="color: black;">Sales graph for the year of {{ date('Y') }}</h1></div>
+      
+      <div class="row">
+        <div><h1 style="color: black;">Sales graph for the month of {{ date('M-Y') }}</h1></div>
       <div class="main-overview">
           
           <canvas id="myChart" width="400" height="150"></canvas>
       </div>
+      </div>
+
 
 @include('home_modals')
 
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 <script>
 var ctx = document.getElementById('myChart');
 var months = new Array();
@@ -321,7 +326,7 @@ $(document).ready(function(){
                       'rgba(153, 102, 255, 1)',
                       'rgba(255, 159, 64, 1)'
                   ],
-                  borderWidth: 1
+                  borderWidth: 2
               }]
           },
           options: {
@@ -342,4 +347,5 @@ $(document).ready(function(){
   });
 
 </script>
+
 @endsection

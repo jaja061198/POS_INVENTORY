@@ -15,7 +15,7 @@ class AuditTrailController extends Controller
     public function index()
     {
     	return view('POS.app_manager.audit_trail.audit_trans')
-        ->with('users',UserModel::where('user_level','!=',3)->get());
+        ->with('users',UserModel::where('user_level','!=',4)->get());
     }
 
     public function trailResult(Request $request)

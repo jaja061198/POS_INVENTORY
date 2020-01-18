@@ -9,7 +9,7 @@
 
 @include('main_layouts.messages')
 
-{{ Form::open(array('route' => 'post.receive')) }}
+{{ Form::open(array('route' => 'post.receive','id' => 'receive_form')) }}
 
 <div class="row">
 	<div class="col-lg-12">
@@ -70,7 +70,7 @@
 					<td colspan="100%" align="right">
 						<button type="button" class="btn btn-primary" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-plus"></i></button>
 
-						<button type="submit" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-save"></i></button>
+						<button type="button" class="btn btn-success" id="submitbtm" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-save"></i></button>
 					</td>
 				</tr>
 			</table>

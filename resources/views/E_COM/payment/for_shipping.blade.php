@@ -31,7 +31,7 @@
            <tr>
              <td>{{ $element['order_no'] }}</td>
              <td >{{ $element['date_ordered'] }}</td>
-             <td>@if($element['status'] == '6') FOR SHIPPING @endif @if($element['status'] == '5') FOR RECEIVING @endif</td>
+             <td>@if($element['status'] == '6') FOR SHIPPING @endif @if($element['status'] == '5') TO RECEIVE @endif @if($element['status'] == '4') FOR STORE PICKUP @endif</td>
              <td>
                <a  class="btn btn-primary btn-xs" href="{{ route('new.orders.review',['id' => str_replace("#","w",$element['order_no'])]) }}" style="color:white;" ><i class="fa fa-search" ></i></a>
              </td>

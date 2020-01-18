@@ -65,13 +65,13 @@ Route::group(['middleware' => 'auth'], function ()
 
 	//For shipping
 
-	Route::get('/ordersonline/forshipping','E_COM\forshippingController@index')->name('shipping.list.index');
+	Route::get('/ordersonline/forshipping','E_COM\ForShippingController@index')->name('shipping.list.index');
 
-	Route::get('/ordersonline/forpayment/review/changestatus/{id}/{action}','E_COM\forshippingController@changestatus')->name('change.status.order');
+	Route::get('/ordersonline/forpayment/review/changestatus/{id}/{action}','E_COM\ForShippingController@changestatus')->name('change.status.order');
 
-	Route::get('/ordersonline/completed','E_COM\forshippingController@complete')->name('order.complete');
+	Route::get('/ordersonline/completed','E_COM\ForShippingController@complete')->name('order.complete');
 
-	Route::get('/ordersonline/cancelled','E_COM\forshippingController@cancel')->name('order.cancel');
+	Route::get('/ordersonline/cancelled','E_COM\ForShippingController@cancel')->name('order.cancel');
 
 	//Shipping Fee
 

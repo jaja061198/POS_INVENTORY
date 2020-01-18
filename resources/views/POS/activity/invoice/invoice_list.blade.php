@@ -13,8 +13,6 @@
 	
 	<div class="col-lg-12">
 
-		<div class="panel panel-default" style=" font-size: 12px;">
-
 			<table class="table table-bordered" id="userTable">
 				<thead>
 					<tr style="text-align: center;font-weight: bold;">
@@ -37,11 +35,14 @@
 					@endforeach
 				</tbody>
 			</table>
-			 	
-		</div>
 
 	</div>
 </div>
 </div>
 
+<script>
+$(document).ready( function () {
+    $('#userTable').DataTable();
+} );
+</script>
 @endsection

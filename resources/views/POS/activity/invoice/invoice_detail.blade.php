@@ -140,7 +140,7 @@
 						<tr>
 							<td colspan="100%" align="right">
 
-								<button type="submit" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-print"></i> Print</button>
+								<a target="_blank" href="{{ route('index.invoice.detail',['id' => $header['INVOICE_NO']]) }}" class="btn btn-success" id="addRow" data-toggle="tooltip" data-placement="top" title="Add Row"><i class="fa fa-print"></i> Print</a>
 								
 							</td>
 						</tr>

@@ -30,7 +30,7 @@ class ForShippingController extends Controller
         //
         //
         return view('E_COM.payment.for_shipping')
-        ->with('items',OrderHeaderModel::where('status','=','6')->orWhere('status','=','5')->get());
+        ->with('items',OrderHeaderModel::where('status','=','6')->orWhere('status','=','5')->orWhere('status','=','4')->get());
     }
     
 

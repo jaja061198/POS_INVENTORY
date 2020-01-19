@@ -87,7 +87,7 @@ function populate3(element_id)
 				$('#'+element_id).focus();
 				return false;
 			}
-
+			$('#get_code'+element_id.substr(8)).val(data.datas['ITEM_CODE']).change();
 			$('#item_desc'+element_id.substr(9)).val(data.datas['ITEM_DESC']).change();
 			$('#get_quant'+element_id.substr(9)).val(data.datas['QUANTITY']).change();
 			event.preventDefault();

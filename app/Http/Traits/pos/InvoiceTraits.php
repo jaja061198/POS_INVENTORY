@@ -162,8 +162,11 @@ trait InvoiceTraits
 		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
 
 		Session::flash('success','Transaction '.$code_holder.' success');
+
+		Session::put('last_code',$code_holder);
 		
-		return redirect()->route('index.invoice.detail',['id' => $code_holder]);
+		return back();
+		// return redirect()->route('index.invoice.detail',['id' => $code_holder]);
 
 	}
 

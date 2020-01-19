@@ -4,6 +4,14 @@
 
 <script>
 
+@if(Session::has('last_code'))
+	window.open("{{ route('index.invoice.detail',['id' => Session::get('last_code')]) }}");
+	@php
+		Session::forget('last_code');
+	@endphp
+@endif
+
+
 $('#submitbtm').click(function(event){
 
 var ret = true;

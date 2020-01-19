@@ -175,14 +175,14 @@ trait ReceivingTraits
 				
 				$details = [
 					'RR_CODE' => $request->input('rr_code'),
-					'ITEM_CODE' => $request->input('get_code')[$key],
+					'ITEM_CODE' => $request->input('item_code')[$key],
 					'LINE_NO' => $key+1,
 					'QUANTITY' => $request->input('quantity')[$key],
 				];
 
 				ReceivingDetailModel::insert($details);
 
-				$this->updateQuantity($request->input('get_code')[$key], $request->input('quantity')[$key]);
+				$this->updateQuantity($request->input('item_code')[$key], $request->input('quantity')[$key]);
 				//Update The quantity in mastefile
 			}
 

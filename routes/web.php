@@ -29,4 +29,17 @@ Route::get('/home/chart', 'HomeController@chart')->name('home.chart');
 
 Route::get('/user/list','userController@showusers')->name('view.users.list');
 
+
+//Email Notification
+
+	Route::get('sendmail', function () {
+
+		$user = \App\User::find(1);
+
+	    Mail::to("jaja061198@gmail.com")->send(new \App\Mail\OrderApproved($id));
+
+	    dd("Email is Send.");
+
+	});
+
 });

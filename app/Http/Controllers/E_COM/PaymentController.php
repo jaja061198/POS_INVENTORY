@@ -96,10 +96,19 @@ class PaymentController extends Controller
 
             $get_user_info = UserModel::where('id','=',$get_or_header->user)->first();
 
+            $grandtotal2 = 0;
+
             if ($get_or_header->type == '1') 
             {
 
                 $total_items_price =  OrderDetailModel::where('order_id','=',str_replace('w', '#', $id))->sum('item_price');
+
+
+                foreach (OrderDetailModel::where('order_id','=',str_replace('w', '#', $id))->get() as $grand_key => $grand_value) 
+                {
+
+                    $grandtotal2 += $grand_value['item_price'] * $grand_value['quantity'];
+                }
 
                 # code...
                 # With Shipping
@@ -115,9 +124,9 @@ class PaymentController extends Controller
                     'DISCOUNT' => 0,
                     'ADDITIONAL_DISC' => 0,
                     'SERVICE_COST' => $get_or_header->shipping_price,
-                    'GRAND_TOTAL' => $total_items_price + $get_or_header->shipping_price,
-                    'GRAND_TOTAL2' => $total_items_price + $get_or_header->shipping_price,
-                    'CASH_AMOUNT' => $total_items_price + $get_or_header->shipping_price,
+                    'GRAND_TOTAL' => $grandtotal2 + $get_or_header->shipping_price,
+                    'GRAND_TOTAL2' => $grandtotal2 + $get_or_header->shipping_price,
+                    'CASH_AMOUNT' => $grandtotal2 + $get_or_header->shipping_price,
                     'CHANGE' => 0,
                     'INVOICE_DATE' => Carbon\Carbon::now(),
                 ];
@@ -167,6 +176,12 @@ class PaymentController extends Controller
 
                 #generate invoice
 
+                foreach (OrderDetailModel::where('order_id','=',str_replace('w', '#', $id))->get() as $grand_key => $grand_value) 
+                {
+
+                    $grandtotal2 += $grand_value['item_price'] * $grand_value['quantity'];
+                }
+
                 $code_holder = $this->generateCode();
 
                 $header = [
@@ -175,9 +190,9 @@ class PaymentController extends Controller
                     'DISCOUNT' => 0,
                     'ADDITIONAL_DISC' => 0,
                     'SERVICE_COST' => 0,
-                    'GRAND_TOTAL' => $total_items_price,
-                    'GRAND_TOTAL2' => $total_items_price,
-                    'CASH_AMOUNT' => $total_items_price,
+                    'GRAND_TOTAL' => $grandtotal2,
+                    'GRAND_TOTAL2' => $grandtotal2,
+                    'CASH_AMOUNT' => $grandtotal2,
                     'CHANGE' => 0,
                     'INVOICE_DATE' => Carbon\Carbon::now(),
                 ];

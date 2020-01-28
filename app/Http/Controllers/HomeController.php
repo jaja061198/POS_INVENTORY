@@ -55,7 +55,8 @@ class HomeController extends Controller
 
         for ($i=1; $i <= $days ; $i++) { 
             // $get_days[$i] = "$i";
-            array_push($get_days, $i);
+            $get_days[] = $i;
+            // array_push($get_days, $i);
         }
 
         $relative_months = [];
@@ -78,16 +79,21 @@ class HomeController extends Controller
 
         $sales = [];
 
-        for($i = 0; $i < sizeof($get_days) ; $i++ )
+        for($i = 0; $i < count($get_days) ; $i++ )
         {
+                if ($i == 0) {
+                    continue;
+                }
                 $year = Carbon\Carbon::now()->year;
                 $month = Carbon\Carbon::now()->month;
                 $date_create = date_create($year."-".$month."-".$i);
                 $format_date = date_format($date_create,"Y-m-d");
                 // $sales[$i] = InvoiceHeaderModel::whereYear('INVOICE_DATE',date('Y'))->whereMonth('INVOICE_DATE',Carbon\Carbon::now()->month)->sum('GRAND_TOTAL2');
-                $sales[$i] = InvoiceHeaderModel::where('INVOICE_DATE','=',$format_date)->sum('GRAND_TOTAL2');            
+                $sales[] = InvoiceHeaderModel::where('INVOICE_DATE','=',$format_date)->sum('GRAND_TOTAL2');            
             
         }
+
+        
 
         return response()->json(['months' => $get_days,'sales' => $sales]);
 

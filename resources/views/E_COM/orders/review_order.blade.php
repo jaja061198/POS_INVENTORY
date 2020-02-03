@@ -76,6 +76,30 @@ use App\Helpers\Helper;
               </tr>
 
 
+              @if($headers['type'] == 1)
+
+                 <tr >
+                  <td style="text-transform: uppercase;font-weight: bold;"><font style="color:red;"></font> Area</td>
+                  <td>
+                    <input type="text" class="form-control" name="order_no" placeholder="Order No" required readonly value="{{ $headers['order_no'] }}">
+                  </td>
+                  
+                  <td style="width: 170px;text-transform: uppercase;font-weight: bold;"><font style="color:red;"></font> Zip</td>
+                  <td>
+                    <input type="date" class="form-control" name="rr_date" placeholder="Transaction Code" required value="{{ $headers['date_ordered'] }}" readonly>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td style="width: 170px;text-transform: uppercase;font-weight: bold;"><font style="color:red;"></font> Address</td>
+                  <td colspan="100%">
+                    <input type="text" class="form-control" name="cust" placeholder="Customer" required value="{{ Helper::getUserInfo($headers['user'])->name }}" readonly=>
+                  </td>
+                </tr>
+
+              @endif
+
             </table>
 
 

@@ -16,8 +16,6 @@
   
   <div class="col-lg-12">
 
-    <div class="panel panel-default" style=" font-size: 12px;">
-
       <table class="table table-bordered" id="userTable">
         <thead>
           <tr style="text-align: center;text-transform: uppercase;font-weight: bold;">
@@ -28,8 +26,6 @@
         </thead>
 
         <tbody>
-          
-        </tbody>
         {{-- <tr>
             <td colspan=""></td>
             <td colspan="2" align="right">
@@ -48,9 +44,10 @@
              </td>
            </tr>
           @endforeach
-      </table>
-        
-    </div>
+
+        </tbody>
+
+      </table>  
 
   </div>
   </div>
@@ -58,5 +55,11 @@
 @include('POS.masterfile.brand.edit_brand_modal')
 @include('POS.masterfile.brand.delete_brand_modal')
 @include('POS.masterfile.brand.scripts.brand_scripts')
+
+<script>
+$(document).ready( function () {
+    $('#userTable').DataTable();
+} );
+</script>
 
 @endsection

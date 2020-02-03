@@ -19,8 +19,6 @@
   
   <div class="col-lg-12">
 
-    <div class="panel panel-default" style=" font-size: 12px;">
-
       <table class="table table-bordered" id="userTable">
         <thead>
           <tr style="text-align: center;text-transform: uppercase;font-weight: bold;">
@@ -33,7 +31,7 @@
 
         <tbody>
           
-        </tbody>
+        
 
           @foreach ($datas as $element)
            <tr>
@@ -48,8 +46,9 @@
            </tr>
           @endforeach
       </table>
+
+    </tbody>
         
-    </div>
 
   </div>
 </div>
@@ -57,5 +56,11 @@
 @include('POS.masterfile.service.edit_service_modal')
 @include('POS.masterfile.service.delete_service_modal')
 @include('POS.masterfile.service.scripts.service_scripts')
+
+<script>
+$(document).ready( function () {
+    $('#userTable').DataTable();
+} );
+</script>
 
 @endsection

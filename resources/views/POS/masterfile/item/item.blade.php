@@ -19,15 +19,15 @@
   
   <div class="col-lg-12">
 
-    <div class="panel panel-default" style=" font-size: 12px;">
+
 
       <table class="table table-bordered" id="userTable">
         <thead>
           <tr style="text-align: center;text-transform: uppercase;font-weight: bold;">
             <td>Item Code</td>
             <td>Item Description</td>
-            <td>Standard Cost</td>
-            <td>Standard Price</td>
+            <td>Standard Cost (PHP)</td>
+            <td>Standard Price (PHP)</td>
             <td>BRAND</td>
             <td>ITEM TYPE</td>
             <td>Quantity</td>
@@ -37,8 +37,7 @@
 
         <tbody>
           
-        </tbody>
-
+        
           @foreach ($datas as $element)
            <tr>
              <td>{{ $element['ITEM_CODE'] }}</td>
@@ -54,9 +53,12 @@
              </td>
            </tr>
           @endforeach
+
+          </tbody>
+
       </table>
         
-    </div>
+
 
   </div>
 </div>
@@ -65,5 +67,13 @@
 @include('POS.masterfile.item.edit_item_modal')
 @include('POS.masterfile.item.delete_item_modal')
 @include('POS.masterfile.item.scripts.item_scripts')
+
+
+<script>
+$(document).ready( function () {
+    $('#userTable').DataTable();
+} );
+</script>
+
 
 @endsection

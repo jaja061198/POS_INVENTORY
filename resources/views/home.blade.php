@@ -264,7 +264,7 @@
           </div>
 
            <div class="overviewcard overview-bg-red">
-            <div class="overviewcard__icon"> <i class="fa fa-file"></i>  New Orders from Ecommerce</div>
+            <div class="overviewcard__icon"> <i class="fa fa-file"></i>  New Orders from Customer</div>
             <div class="overviewcard__info"> {{ Helper::getneworders() }}  <button type="button" class="btn btn-danger" onclick="showModal2()" style="border-radius: 40px;"><i class="fa fa-info-circle"></i></button></div>
           </div>
 

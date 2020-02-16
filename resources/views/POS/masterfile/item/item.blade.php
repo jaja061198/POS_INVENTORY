@@ -31,6 +31,7 @@
             <td>BRAND</td>
             <td>ITEM TYPE</td>
             <td>Quantity</td>
+            <td>Status</td>
             <td style="width: 120px;">Action</td>
           </tr>
         </thead>
@@ -47,9 +48,22 @@
              <td>{{ $element->getBrand['BRAND_DESC'] }}</td>
              <td>{{ $element->getType['ITEM_TYPE_DESC'] }}</td>
               <td>{{ $element['QUANTITY'] }}</td>
+              <td>
+
+                @if($element['STATUS'] == '1')
+                Active
+                <a class="btn btn-warning btn-xs" data-attr="{{ $element['ITEM_CODE'] }}"  style="color:white;" href="{{ route('status.item',['id' => $element['ITEM_CODE']]) }}"><i class="fa fa-times"></i></a>
+                @endif
+
+                @if($element['STATUS'] == '2')
+                Inactive
+                <a class="btn btn-success btn-xs" data-attr="{{ $element['ITEM_CODE'] }}" style="color:white;" href="{{ route('status.item',['id' => $element['ITEM_CODE']]) }}"><i class="fa fa-check"></i></a>
+                @endif
+              </td>
              <td>
                <a  class="btn btn-primary btn-xs" onclick="editModal(this)" data-attr="{{ $element['ITEM_CODE'] }}" style="color:white;"  data-target="#editModal" data-toggle="modal"><i class="fa fa-edit" ></i></a>
-                <a class="btn btn-danger btn-xs" data-attr="{{ $element['ITEM_CODE'] }}" onclick="deleteModal(this)" data-target="#deleteModal" data-toggle="modal" style="color:white;"><i class="fa fa-trash"></i></a>
+              
+                <a class="btn btn-danger btn-xs" data-attr="{{ $element['ITEM_CODE'] }}" style="color:white;" @if(Helper::checkItemTranscations($element['ITEM_CODE']) > 0) disabled @else onclick="deleteModal(this)"  data-target="#deleteModal" data-toggle="modal" @endif><i class="fa fa-trash"></i></a>
              </td>
            </tr>
           @endforeach

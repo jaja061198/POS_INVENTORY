@@ -68,6 +68,8 @@ Route::post('/masterfile/item/edit','masterfile\ItemController@update')->name('u
 
 Route::post('/masterfile/item/delete','masterfile\ItemController@destroy')->name('delete.item');
 
+Route::get('/masterfile/item/changestatus/{id}','masterfile\ItemController@status')->name('status.item');
+
 //SERVICES
 //
 Route::get('/masterfile/service','masterfile\ServicesController@index')->name('index.service');

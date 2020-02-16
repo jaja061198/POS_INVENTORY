@@ -5,11 +5,14 @@ use App\Models\app_manager\Company as CompanyModel;
 use App\User as UserModel;
 use App\Models\app_manager\WindowAccess as AccessModel;
 use App\Models\pos\InvoiceHeader as InvoiceHeaderModel;
+use App\Models\pos\InvoiceDetail as InvoiceDetailsModel;
+use App\Models\inventory\OrderDetail as OrderDetailModel;
 use App\Models\masterfile\Item as ItemModel;
 use App\Models\inventory\OrderHeader as OrderHeaderModel;
 use App\Models\app_manager\AuditTrail as AuditTrailModel;
 use App\Models\masterfile\Service as ServiceModel;
 use App\Models\e_com\Shipping as ShippingModel;
+use App\Models\inventory\ReceivingDetail as ReceivingDetailModel;
 use Carbon\Carbon;
 use DB;
 
@@ -186,7 +189,7 @@ class Helper
 
     public static function getMinimumItems()
     {
-        return ItemModel::whereRaw('QUANTITY < MIN_LEVEL')->count();
+        return ItemModel::whereRaw('QUANTITY < MIN_LEVEL')->where('status','=','1')->count();
     }
     
 
@@ -198,7 +201,7 @@ class Helper
 
     public static function retrieveMinimumItems()
     {
-        return ItemModel::whereRaw('QUANTITY < MIN_LEVEL')->get();
+        return ItemModel::whereRaw('QUANTITY < MIN_LEVEL')->where('status','=','1')->get();
     }
 
 
@@ -239,6 +242,22 @@ class Helper
         {
             return ShippingModel::where('id','=',$code)->first();
         }
+    }
+
+    public static function checkItemTranscations($item_code)
+    {
+        $counter = 0;
+
+        $order_counter = OrderDetailModel::where('item_code','=',$item_code)->count();
+
+        $receive_counter = ReceivingDetailModel::Where('item_code','=',$item_code)->count();
+
+        $invoice_counter = InvoiceDetailsModel::where('item_code','=',$item_code)->count();
+
+        $counter = $order_counter + $receive_counter + $invoice_counter;
+
+        return $counter;
+
     }
     
 }

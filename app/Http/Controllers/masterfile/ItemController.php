@@ -102,4 +102,9 @@ class ItemController extends Controller
 
         return $counter;
     }
+
+    public function status($id)
+    {
+        return $this->statusFunction($id);
+    }
 }

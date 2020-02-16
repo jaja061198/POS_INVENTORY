@@ -95,7 +95,9 @@ trait ReceivingTraits
 
 			
 				$totalFiltered = ItemModel::where('item_code','like',"%{$search}%")
+										->where('status','=','1')
 										->orWhere('ITEM_DESC','like',"%{$search}%")
+										->where('status','=','1')
 										->count();
 		}
 
@@ -134,6 +136,7 @@ trait ReceivingTraits
 	{
 
 		return $posts = ItemModel::limit($LIMIT)
+				->where('status','=','1')
 				->orderBy($ORDER,$DIR)
 				->get();
 	}
@@ -142,7 +145,9 @@ trait ReceivingTraits
 	{
 
 		return $posts = ItemModel::where('ITEM_CODE','like',"%{$SEARCH}%")
+						->where('status','=','1')
 						->orWhere('ITEM_DESC','like',"%{$SEARCH}%")
+						->where('status','=','1')
 						->limit($LIMIT)
 						->orderBy($ORDER,$DIR)
 						->get();
@@ -151,7 +156,7 @@ trait ReceivingTraits
 
 	public function populateFunction(Request $request)
 	{
-		$finder = ItemModel::where('ITEM_CODE','=',$request->input('item_code'))->first();
+		$finder = ItemModel::where('ITEM_CODE','=',$request->input('item_code'))->where('status','=','1')->first();
 
 		return response()->json(['datas' => $finder]);
 	}

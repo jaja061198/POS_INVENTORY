@@ -194,4 +194,34 @@ trait ItemTraits
 
 		return back();
 	}
+
+	public function statusFunction($id)
+	{
+		$detail = ItemModel::where('item_code','=',$id)->first();
+
+		// return $detail;
+
+		if ($detail->STATUS == '1') 
+		{
+		 	ItemModel::where('item_code','=',$id)->update(['STATUS' => '2']);
+		}
+
+
+		if ($detail->STATUS == '2') 
+		{
+		 	ItemModel::where('item_code','=',$id)->update(['STATUS' => '1']);
+		}
+
+		$window = 'ITEM';
+
+		$action_type = 'ED';
+
+		$action = 'UPDATED ITEM STATUS '.$id;
+
+		Helper::putTrail(Auth::user()->id,$window,$action_type,$action);
+
+		Session::flash('success','Change Status Success');
+
+		return back();
+	}
 }

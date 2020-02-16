@@ -9,6 +9,7 @@ use App\Models\masterfile\Item as ItemModel;
 use App\Models\inventory\OrderHeader as OrderHeaderModel;
 use App\Models\app_manager\AuditTrail as AuditTrailModel;
 use App\Models\masterfile\Service as ServiceModel;
+use App\Models\e_com\Shipping as ShippingModel;
 use Carbon\Carbon;
 use DB;
 
@@ -171,14 +172,14 @@ class Helper
 
     public static function getTodaySales()
     {
-        $today_sales = InvoiceHeaderModel::where('INVOICE_DATE','>=',date('Y-m-d').' 00:00:00')->sum('GRAND_TOTAL2');
+        $today_sales = InvoiceHeaderModel::whereDate('INVOICE_DATE','=',date('Y-m-d'))->sum('GRAND_TOTAL2');
 
         return $today_sales;
     }
 
     public static function getMonthlySales()
     {
-        $today_sales = InvoiceHeaderModel::where('INVOICE_DATE','>=',Carbon::now()->subMonth())->sum('GRAND_TOTAL2');
+        $today_sales = InvoiceHeaderModel::whereMonth('INVOICE_DATE','=',Carbon::now()->month)->sum('GRAND_TOTAL2');
 
         return $today_sales;
     }
@@ -226,6 +227,18 @@ class Helper
         ];
 
         AuditTrailModel::insert($trail);
+    }
+
+    public static function getShippingInfo($code)
+    {
+        if ($code == '' || $code == null) 
+        {
+            return (object) ['area' => 'N\A'];
+        }
+        else
+        {
+            return ShippingModel::where('id','=',$code)->first();
+        }
     }
     
 }

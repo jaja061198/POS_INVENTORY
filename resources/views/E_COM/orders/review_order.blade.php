@@ -81,12 +81,12 @@ use App\Helpers\Helper;
                  <tr >
                   <td style="text-transform: uppercase;font-weight: bold;"><font style="color:red;"></font> Area</td>
                   <td>
-                    <input type="text" class="form-control" name="order_no" placeholder="Order No" required readonly value="{{ $headers['order_no'] }}">
+                    <input type="text" class="form-control" name="order_no" placeholder="Area" required readonly value="{{ Helper::getShippingInfo($code = null)->area }}">
                   </td>
                   
                   <td style="width: 170px;text-transform: uppercase;font-weight: bold;"><font style="color:red;"></font> Zip</td>
                   <td>
-                    <input type="date" class="form-control" name="rr_date" placeholder="Transaction Code" required value="{{ $headers['date_ordered'] }}" readonly>
+                    <input type="text" class="form-control" name="rr_date" placeholder="Zip Code" required value="{{ $headers['zip'] }}" readonly>
                   </td>
                 </tr>
 
@@ -94,7 +94,7 @@ use App\Helpers\Helper;
                 <tr>
                   <td style="width: 170px;text-transform: uppercase;font-weight: bold;"><font style="color:red;"></font> Address</td>
                   <td colspan="100%">
-                    <input type="text" class="form-control" name="cust" placeholder="Customer" required value="{{ Helper::getUserInfo($headers['user'])->name }}" readonly=>
+                    <input type="text" class="form-control" name="cust" placeholder="Address" required value="{{ $headers['address'] }}" readonly=>
                   </td>
                 </tr>
 
